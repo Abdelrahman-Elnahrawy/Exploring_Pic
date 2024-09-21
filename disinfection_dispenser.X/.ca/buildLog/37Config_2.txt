@@ -1,0 +1,62 @@
+make -f nbproject/Makefile-37Config_2.mk SUBPROJECTS= .clean-conf
+make[1]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+rm -f  -r .ca/build/37Config_2/production
+rm -f  -r .ca/dist/37Config_2/production
+make[1]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+[32mCLEAN SUCCESSFUL (total time: 246ms)[0m
+make -f nbproject/Makefile-37Config_2.mk SUBPROJECTS= .build-conf
+make  -f nbproject/Makefile-37Config_2.mk .ca/dist/37Config_2/production/disinfection_dispenser.X.production.hex
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/HAL/scr/Motor.p1 HAL/scr/Motor.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/HAL/scr/Proximity_sensor.p1 HAL/scr/Proximity_sensor.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/HAL/scr/max7219.p1 HAL/scr/max7219.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+HAL/scr/max7219.c:21:27: warning: implicit conversion changes signedness: 'int' to 'uint16' (aka 'unsigned short') [-Wsign-conversion]
+        SPI_Send_16bit((i << 8) );  // Clear each digit
+        ~~~~~~~~~~~~~~  ~~^~~~
+HAL/scr/max7219.c:27:33: warning: implicit conversion changes signedness: 'int' to 'uint16' (aka 'unsigned short') [-Wsign-conversion]
+    SPI_Send_16bit((digit) << 8 | character);
+    ~~~~~~~~~~~~~~ ~~~~~~~~~~~~~^~~~~~~~~~~
+2 warnings generated.
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/MCAL/scr/gpio.p1 MCAL/scr/gpio.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/MCAL/scr/Dio.p1 MCAL/scr/Dio.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/MCAL/scr/Adc.p1 MCAL/scr/Adc.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/main.p1 main.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_37Config_2=37Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/37Config_2/production/SERVICE/scr/Spi.p1 SERVICE/scr/Spi.c 
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+make[2]: Entering directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+"C:\Program Files\Microchip\xc8\v2.50\bin\xc8-cc.exe"  -mcpu=12F675 -Wl,-Map=.ca/dist/37Config_2/production/disinfection_dispenser.X.production.map  -DXPRJ_37Config_2=37Config_2  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC10-12Fxxx_DFP/1.7.178/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto      -Wl,--memorysummary,.ca/dist/37Config_2/production/memoryfile.xml -o .ca/dist/37Config_2/production/disinfection_dispenser.X.production.elf  .ca/build/37Config_2/production/HAL/scr/max7219.p1 .ca/build/37Config_2/production/HAL/scr/Motor.p1 .ca/build/37Config_2/production/HAL/scr/Proximity_sensor.p1 .ca/build/37Config_2/production/MCAL/scr/Adc.p1 .ca/build/37Config_2/production/MCAL/scr/Dio.p1 .ca/build/37Config_2/production/MCAL/scr/gpio.p1 .ca/build/37Config_2/production/SERVICE/scr/Spi.p1 .ca/build/37Config_2/production/main.p1     
+::: advisory: (2100) using the C99 standard library with the selected device may result in larger code and data usage
+HAL/scr/max7219.c:42:: warning: (520) function "_MAX7219_Shutdown" is never called
+MCAL/scr/Adc.c:62:: warning: (759) expression generates no code
+
+12F675 Memory Summary:
+    Program space        used   39Bh (   923) of   400h words   ( 90.1%)
+    Data space           used    2Fh (    47) of    40h bytes   ( 73.4%)
+    EEPROM space         used     0h (     0) of    80h bytes   (  0.0%)
+    Configuration bits   used     1h (     1) of     1h word    (100.0%)
+    ID Location space    used     0h (     0) of     4h bytes   (  0.0%)
+
+make[2]: Leaving directory 'C:/Users/Family/MPLABXProjects/disinfection_dispenser.X'
+[32mBUILD SUCCESSFUL (total time: 3s)[0m

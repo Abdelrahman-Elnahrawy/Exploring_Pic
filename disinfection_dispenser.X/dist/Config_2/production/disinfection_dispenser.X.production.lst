@@ -1,0 +1,2041 @@
+
+
+Microchip MPLAB XC8 Assembler V2.50 build 20240725155939 
+                                                                                               Fri Sep 20 16:01:42 2024
+
+Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og9 
+     1                           	processor	12F675
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	strings,global,class=STRING,space=0,delta=2,noexec
+     5                           	psect	cinit,global,class=CODE,space=0,merge=1,delta=2
+     6                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+     9                           	psect	maintext,global,class=CODE,space=0,split=1,delta=2
+    10                           	psect	text1,local,class=CODE,space=0,merge=1,delta=2
+    11                           	psect	text2,local,class=CODE,space=0,merge=1,delta=2
+    12                           	psect	text3,local,class=CODE,space=0,merge=1,delta=2
+    13                           	psect	text4,local,class=CODE,space=0,merge=1,delta=2,group=1
+    14                           	psect	text5,local,class=CODE,space=0,merge=1,delta=2,group=1
+    15                           	psect	text6,local,class=CODE,space=0,merge=1,delta=2
+    16                           	psect	text7,local,class=CODE,space=0,merge=1,delta=2
+    17                           	psect	text8,local,class=CODE,space=0,merge=1,delta=2
+    18                           	psect	text9,local,class=CODE,space=0,merge=1,delta=2
+    19                           	psect	text10,local,class=CODE,space=0,merge=1,delta=2
+    20                           	psect	text11,local,class=CODE,space=0,merge=1,delta=2
+    21                           	psect	text12,local,class=CODE,space=0,merge=1,delta=2
+    22                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    23                           	dabs	1,0x5E,2
+    24     0000                     
+    25                           ; Generated 17/08/2023 GMT
+    26                           ; 
+    27                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    28                           ; All rights reserved.
+    29                           ; 
+    30                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    31                           ; 
+    32                           ; Redistribution and use in source and binary forms, with or without modification, are
+    33                           ; permitted provided that the following conditions are met:
+    34                           ; 
+    35                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    36                           ;        conditions and the following disclaimer.
+    37                           ; 
+    38                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    39                           ;        of conditions and the following disclaimer in the documentation and/or other
+    40                           ;        materials provided with the distribution. Publication is not required when
+    41                           ;        this file is used in an embedded application.
+    42                           ; 
+    43                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    44                           ;        software without specific prior written permission.
+    45                           ; 
+    46                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    47                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    48                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    49                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    50                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    51                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    52                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    53                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    54                           ; 
+    55                           ; 
+    56                           ; Code-generator required, PIC12F675 Definitions
+    57                           ; 
+    58                           ; SFR Addresses
+    59     0004                     fsr             equ	4
+    60     0004                     fsr0            equ	4
+    61     0000                     indf            equ	0
+    62     0000                     indf0           equ	0
+    63     0002                     pc              equ	2
+    64     0002                     pcl             equ	2
+    65     000A                     pclath          equ	10
+    66     0003                     status          equ	3
+    67     0000                     INDF            equ	0	;# 
+    68     0001                     TMR0            equ	1	;# 
+    69     0002                     PCL             equ	2	;# 
+    70     0003                     STATUS          equ	3	;# 
+    71     0004                     FSR             equ	4	;# 
+    72     0005                     GPIO            equ	5	;# 
+    73     000A                     PCLATH          equ	10	;# 
+    74     000B                     INTCON          equ	11	;# 
+    75     000C                     PIR1            equ	12	;# 
+    76     000E                     TMR1            equ	14	;# 
+    77     000E                     TMR1L           equ	14	;# 
+    78     000F                     TMR1H           equ	15	;# 
+    79     0010                     T1CON           equ	16	;# 
+    80     0019                     CMCON           equ	25	;# 
+    81     001E                     ADRESH          equ	30	;# 
+    82     001F                     ADCON0          equ	31	;# 
+    83     0081                     OPTION_REG      equ	129	;# 
+    84     0085                     TRISIO          equ	133	;# 
+    85     008C                     PIE1            equ	140	;# 
+    86     008E                     PCON            equ	142	;# 
+    87     0090                     OSCCAL          equ	144	;# 
+    88     0095                     WPU             equ	149	;# 
+    89     0096                     IOC             equ	150	;# 
+    90     0096                     IOCB            equ	150	;# 
+    91     0099                     VRCON           equ	153	;# 
+    92     009A                     EEDATA          equ	154	;# 
+    93     009A                     EEDAT           equ	154	;# 
+    94     009B                     EEADR           equ	155	;# 
+    95     009C                     EECON1          equ	156	;# 
+    96     009D                     EECON2          equ	157	;# 
+    97     009E                     ADRESL          equ	158	;# 
+    98     009F                     ANSEL           equ	159	;# 
+    99     0000                     INDF            equ	0	;# 
+   100     0001                     TMR0            equ	1	;# 
+   101     0002                     PCL             equ	2	;# 
+   102     0003                     STATUS          equ	3	;# 
+   103     0004                     FSR             equ	4	;# 
+   104     0005                     GPIO            equ	5	;# 
+   105     000A                     PCLATH          equ	10	;# 
+   106     000B                     INTCON          equ	11	;# 
+   107     000C                     PIR1            equ	12	;# 
+   108     000E                     TMR1            equ	14	;# 
+   109     000E                     TMR1L           equ	14	;# 
+   110     000F                     TMR1H           equ	15	;# 
+   111     0010                     T1CON           equ	16	;# 
+   112     0019                     CMCON           equ	25	;# 
+   113     001E                     ADRESH          equ	30	;# 
+   114     001F                     ADCON0          equ	31	;# 
+   115     0081                     OPTION_REG      equ	129	;# 
+   116     0085                     TRISIO          equ	133	;# 
+   117     008C                     PIE1            equ	140	;# 
+   118     008E                     PCON            equ	142	;# 
+   119     0090                     OSCCAL          equ	144	;# 
+   120     0095                     WPU             equ	149	;# 
+   121     0096                     IOC             equ	150	;# 
+   122     0096                     IOCB            equ	150	;# 
+   123     0099                     VRCON           equ	153	;# 
+   124     009A                     EEDATA          equ	154	;# 
+   125     009A                     EEDAT           equ	154	;# 
+   126     009B                     EEADR           equ	155	;# 
+   127     009C                     EECON1          equ	156	;# 
+   128     009D                     EECON2          equ	157	;# 
+   129     009E                     ADRESL          equ	158	;# 
+   130     009F                     ANSEL           equ	159	;# 
+   131     0000                     INDF            equ	0	;# 
+   132     0001                     TMR0            equ	1	;# 
+   133     0002                     PCL             equ	2	;# 
+   134     0003                     STATUS          equ	3	;# 
+   135     0004                     FSR             equ	4	;# 
+   136     0005                     GPIO            equ	5	;# 
+   137     000A                     PCLATH          equ	10	;# 
+   138     000B                     INTCON          equ	11	;# 
+   139     000C                     PIR1            equ	12	;# 
+   140     000E                     TMR1            equ	14	;# 
+   141     000E                     TMR1L           equ	14	;# 
+   142     000F                     TMR1H           equ	15	;# 
+   143     0010                     T1CON           equ	16	;# 
+   144     0019                     CMCON           equ	25	;# 
+   145     001E                     ADRESH          equ	30	;# 
+   146     001F                     ADCON0          equ	31	;# 
+   147     0081                     OPTION_REG      equ	129	;# 
+   148     0085                     TRISIO          equ	133	;# 
+   149     008C                     PIE1            equ	140	;# 
+   150     008E                     PCON            equ	142	;# 
+   151     0090                     OSCCAL          equ	144	;# 
+   152     0095                     WPU             equ	149	;# 
+   153     0096                     IOC             equ	150	;# 
+   154     0096                     IOCB            equ	150	;# 
+   155     0099                     VRCON           equ	153	;# 
+   156     009A                     EEDATA          equ	154	;# 
+   157     009A                     EEDAT           equ	154	;# 
+   158     009B                     EEADR           equ	155	;# 
+   159     009C                     EECON1          equ	156	;# 
+   160     009D                     EECON2          equ	157	;# 
+   161     009E                     ADRESL          equ	158	;# 
+   162     009F                     ANSEL           equ	159	;# 
+   163     0000                     INDF            equ	0	;# 
+   164     0001                     TMR0            equ	1	;# 
+   165     0002                     PCL             equ	2	;# 
+   166     0003                     STATUS          equ	3	;# 
+   167     0004                     FSR             equ	4	;# 
+   168     0005                     GPIO            equ	5	;# 
+   169     000A                     PCLATH          equ	10	;# 
+   170     000B                     INTCON          equ	11	;# 
+   171     000C                     PIR1            equ	12	;# 
+   172     000E                     TMR1            equ	14	;# 
+   173     000E                     TMR1L           equ	14	;# 
+   174     000F                     TMR1H           equ	15	;# 
+   175     0010                     T1CON           equ	16	;# 
+   176     0019                     CMCON           equ	25	;# 
+   177     001E                     ADRESH          equ	30	;# 
+   178     001F                     ADCON0          equ	31	;# 
+   179     0081                     OPTION_REG      equ	129	;# 
+   180     0085                     TRISIO          equ	133	;# 
+   181     008C                     PIE1            equ	140	;# 
+   182     008E                     PCON            equ	142	;# 
+   183     0090                     OSCCAL          equ	144	;# 
+   184     0095                     WPU             equ	149	;# 
+   185     0096                     IOC             equ	150	;# 
+   186     0096                     IOCB            equ	150	;# 
+   187     0099                     VRCON           equ	153	;# 
+   188     009A                     EEDATA          equ	154	;# 
+   189     009A                     EEDAT           equ	154	;# 
+   190     009B                     EEADR           equ	155	;# 
+   191     009C                     EECON1          equ	156	;# 
+   192     009D                     EECON2          equ	157	;# 
+   193     009E                     ADRESL          equ	158	;# 
+   194     009F                     ANSEL           equ	159	;# 
+   195     0000                     INDF            equ	0	;# 
+   196     0001                     TMR0            equ	1	;# 
+   197     0002                     PCL             equ	2	;# 
+   198     0003                     STATUS          equ	3	;# 
+   199     0004                     FSR             equ	4	;# 
+   200     0005                     GPIO            equ	5	;# 
+   201     000A                     PCLATH          equ	10	;# 
+   202     000B                     INTCON          equ	11	;# 
+   203     000C                     PIR1            equ	12	;# 
+   204     000E                     TMR1            equ	14	;# 
+   205     000E                     TMR1L           equ	14	;# 
+   206     000F                     TMR1H           equ	15	;# 
+   207     0010                     T1CON           equ	16	;# 
+   208     0019                     CMCON           equ	25	;# 
+   209     001E                     ADRESH          equ	30	;# 
+   210     001F                     ADCON0          equ	31	;# 
+   211     0081                     OPTION_REG      equ	129	;# 
+   212     0085                     TRISIO          equ	133	;# 
+   213     008C                     PIE1            equ	140	;# 
+   214     008E                     PCON            equ	142	;# 
+   215     0090                     OSCCAL          equ	144	;# 
+   216     0095                     WPU             equ	149	;# 
+   217     0096                     IOC             equ	150	;# 
+   218     0096                     IOCB            equ	150	;# 
+   219     0099                     VRCON           equ	153	;# 
+   220     009A                     EEDATA          equ	154	;# 
+   221     009A                     EEDAT           equ	154	;# 
+   222     009B                     EEADR           equ	155	;# 
+   223     009C                     EECON1          equ	156	;# 
+   224     009D                     EECON2          equ	157	;# 
+   225     009E                     ADRESL          equ	158	;# 
+   226     009F                     ANSEL           equ	159	;# 
+   227     0000                     INDF            equ	0	;# 
+   228     0001                     TMR0            equ	1	;# 
+   229     0002                     PCL             equ	2	;# 
+   230     0003                     STATUS          equ	3	;# 
+   231     0004                     FSR             equ	4	;# 
+   232     0005                     GPIO            equ	5	;# 
+   233     000A                     PCLATH          equ	10	;# 
+   234     000B                     INTCON          equ	11	;# 
+   235     000C                     PIR1            equ	12	;# 
+   236     000E                     TMR1            equ	14	;# 
+   237     000E                     TMR1L           equ	14	;# 
+   238     000F                     TMR1H           equ	15	;# 
+   239     0010                     T1CON           equ	16	;# 
+   240     0019                     CMCON           equ	25	;# 
+   241     001E                     ADRESH          equ	30	;# 
+   242     001F                     ADCON0          equ	31	;# 
+   243     0081                     OPTION_REG      equ	129	;# 
+   244     0085                     TRISIO          equ	133	;# 
+   245     008C                     PIE1            equ	140	;# 
+   246     008E                     PCON            equ	142	;# 
+   247     0090                     OSCCAL          equ	144	;# 
+   248     0095                     WPU             equ	149	;# 
+   249     0096                     IOC             equ	150	;# 
+   250     0096                     IOCB            equ	150	;# 
+   251     0099                     VRCON           equ	153	;# 
+   252     009A                     EEDATA          equ	154	;# 
+   253     009A                     EEDAT           equ	154	;# 
+   254     009B                     EEADR           equ	155	;# 
+   255     009C                     EECON1          equ	156	;# 
+   256     009D                     EECON2          equ	157	;# 
+   257     009E                     ADRESL          equ	158	;# 
+   258     009F                     ANSEL           equ	159	;# 
+   259     0000                     INDF            equ	0	;# 
+   260     0001                     TMR0            equ	1	;# 
+   261     0002                     PCL             equ	2	;# 
+   262     0003                     STATUS          equ	3	;# 
+   263     0004                     FSR             equ	4	;# 
+   264     0005                     GPIO            equ	5	;# 
+   265     000A                     PCLATH          equ	10	;# 
+   266     000B                     INTCON          equ	11	;# 
+   267     000C                     PIR1            equ	12	;# 
+   268     000E                     TMR1            equ	14	;# 
+   269     000E                     TMR1L           equ	14	;# 
+   270     000F                     TMR1H           equ	15	;# 
+   271     0010                     T1CON           equ	16	;# 
+   272     0019                     CMCON           equ	25	;# 
+   273     001E                     ADRESH          equ	30	;# 
+   274     001F                     ADCON0          equ	31	;# 
+   275     0081                     OPTION_REG      equ	129	;# 
+   276     0085                     TRISIO          equ	133	;# 
+   277     008C                     PIE1            equ	140	;# 
+   278     008E                     PCON            equ	142	;# 
+   279     0090                     OSCCAL          equ	144	;# 
+   280     0095                     WPU             equ	149	;# 
+   281     0096                     IOC             equ	150	;# 
+   282     0096                     IOCB            equ	150	;# 
+   283     0099                     VRCON           equ	153	;# 
+   284     009A                     EEDATA          equ	154	;# 
+   285     009A                     EEDAT           equ	154	;# 
+   286     009B                     EEADR           equ	155	;# 
+   287     009C                     EECON1          equ	156	;# 
+   288     009D                     EECON2          equ	157	;# 
+   289     009E                     ADRESL          equ	158	;# 
+   290     009F                     ANSEL           equ	159	;# 
+   291                           
+   292                           	psect	strings
+   293     0001                     __pstrings:
+   294     0001                     stringtab:
+   295     0001                     __stringtab:
+   296     0001                     stringcode:	
+   297                           ;	String table - string pointers are 1 byte each
+   298                           
+   299     0001                     stringdir:
+   300     0001  3000               	movlw	high stringdir
+   301     0002  008A               	movwf	10
+   302     0003  0804               	movf	4,w
+   303     0004  0A84               	incf	4,f
+   304     0005  0782               	addwf	2,f
+   305     0006                     __stringbase:
+   306     0006  3400               	retlw	0
+   307     0007                     __end_of__stringtab:
+   308     0007                     _MAX7219_CharTable:
+   309     0007  347E               	retlw	126
+   310     0008  3430               	retlw	48
+   311     0009  346D               	retlw	109
+   312     000A  3479               	retlw	121
+   313     000B  3433               	retlw	51
+   314     000C  345B               	retlw	91
+   315     000D  345F               	retlw	95
+   316     000E  3470               	retlw	112
+   317     000F  347F               	retlw	127
+   318     0010  347B               	retlw	123
+   319     0011  3477               	retlw	119
+   320     0012  341F               	retlw	31
+   321     0013  344E               	retlw	78
+   322     0014  343D               	retlw	61
+   323     0015  344F               	retlw	79
+   324     0016  3447               	retlw	71
+   325     0017  3437               	retlw	55
+   326     0018  341E               	retlw	30
+   327     0019  340E               	retlw	14
+   328     001A  3415               	retlw	21
+   329     001B  341D               	retlw	29
+   330     001C  3467               	retlw	103
+   331     001D  343E               	retlw	62
+   332     001E                     __end_of_MAX7219_CharTable:
+   333     0005                     _GPIO           set	5
+   334     001F                     _ADCON0         set	31
+   335     0095                     _WPU            set	149
+   336     0081                     _OPTION_REG     set	129
+   337     0085                     _TRISIO         set	133
+   338     009F                     _ANSEL          set	159
+   339                           
+   340                           	psect	cinit
+   341     03F6                     start_initialization:	
+   342                           ; #config settings
+   343                           
+   344     03F6                     __initialization:
+   345                           
+   346                           ; Clear objects allocated to BANK0
+   347     03F6  1283               	bcf	3,5	;RP0=0, select bank0
+   348     03F7  01B7               	clrf	__pbssBANK0& (0+127)
+   349     03F8  01B8               	clrf	(__pbssBANK0+1)& (0+127)
+   350     03F9  01B9               	clrf	(__pbssBANK0+2)& (0+127)
+   351     03FA  01BA               	clrf	(__pbssBANK0+3)& (0+127)
+   352     03FB  01BB               	clrf	(__pbssBANK0+4)& (0+127)
+   353     03FC  01BC               	clrf	(__pbssBANK0+5)& (0+127)
+   354     03FD                     end_of_initialization:	
+   355                           ;End of C runtime variable initialization code
+   356                           
+   357     03FD                     __end_of__initialization:
+   358     03FD  0183               	clrf	3
+   359     03FE  29CE               	ljmp	_main	;jump to C main() function
+   360                           
+   361                           	psect	bssBANK0
+   362     0037                     __pbssBANK0:
+   363     0037                     _value2:
+   364     0037                     	ds	2
+   365     0039                     _value3:
+   366     0039                     	ds	2
+   367     003B                     _BCD_Enabled:
+   368     003B                     	ds	1
+   369     003C                     _DIO_State:
+   370     003C                     	ds	1
+   371                           
+   372                           	psect	cstackCOMMON
+   373     0000                     __pcstackCOMMON:
+   374     0000                     ??_MAX7219_Init:
+   375     0000                     ??_MAX7219_DisplayNumber:	
+   376                           ; 1 bytes @ 0x0
+   377                           
+   378     0000                     ??_Adc_Init:	
+   379                           ; 1 bytes @ 0x0
+   380                           
+   381     0000                     ??_Dio_init:	
+   382                           ; 1 bytes @ 0x0
+   383                           
+   384     0000                     ??_Gpio_Init:	
+   385                           ; 1 bytes @ 0x0
+   386                           
+   387     0000                     ??_SPI_Init:	
+   388                           ; 1 bytes @ 0x0
+   389                           
+   390     0000                     ??_main:	
+   391                           ; 1 bytes @ 0x0
+   392                           
+   393                           
+   394                           	psect	cstackBANK0
+   395     0020                     __pcstackBANK0:	
+   396                           ; 1 bytes @ 0x0
+   397                           
+   398     0020                     ?_MAX7219_Init:
+   399     0020                     ?_Adc_Init:	
+   400                           ; 1 bytes @ 0x0
+   401                           
+   402     0020                     ?_Dio_Pin_Write:	
+   403                           ; 1 bytes @ 0x0
+   404                           
+   405     0020                     ?_Dio_Config:	
+   406                           ; 1 bytes @ 0x0
+   407                           
+   408     0020                     ?_Dio_init:	
+   409                           ; 1 bytes @ 0x0
+   410                           
+   411     0020                     ?_Gpio_Init:	
+   412                           ; 1 bytes @ 0x0
+   413                           
+   414     0020                     ?_SPI_Init:	
+   415                           ; 1 bytes @ 0x0
+   416                           
+   417     0020                     ?_main:	
+   418                           ; 1 bytes @ 0x0
+   419                           
+   420     0020                     ?___lldiv:	
+   421                           ; 2 bytes @ 0x0
+   422                           
+   423     0020                     ?___llmod:	
+   424                           ; 4 bytes @ 0x0
+   425                           
+   426     0020                     Dio_Pin_Write@state:	
+   427                           ; 4 bytes @ 0x0
+   428                           
+   429     0020                     Dio_Config@direction:	
+   430                           ; 1 bytes @ 0x0
+   431                           
+   432     0020                     ___lldiv@divisor:	
+   433                           ; 1 bytes @ 0x0
+   434                           
+   435     0020                     ___llmod@divisor:	
+   436                           ; 4 bytes @ 0x0
+   437                           
+   438                           
+   439                           ; 4 bytes @ 0x0
+   440     0020                     	ds	1
+   441     0021                     Dio_Config@state:
+   442     0021                     ??_Dio_Pin_Write:	
+   443                           ; 1 bytes @ 0x1
+   444                           
+   445                           
+   446                           ; 1 bytes @ 0x1
+   447     0021                     	ds	1
+   448     0022                     Dio_Pin_Write@pinNumber:
+   449     0022                     Dio_Config@pullType:	
+   450                           ; 1 bytes @ 0x2
+   451                           
+   452                           
+   453                           ; 1 bytes @ 0x2
+   454     0022                     	ds	1
+   455     0023                     ?_SPI_Send_16bit:
+   456     0023                     SPI_Send_16bit@data:	
+   457                           ; 1 bytes @ 0x3
+   458                           
+   459     0023                     ??_Dio_Config:	
+   460                           ; 2 bytes @ 0x3
+   461                           
+   462                           
+   463                           ; 1 bytes @ 0x3
+   464     0023                     	ds	1
+   465     0024                     ___lldiv@dividend:
+   466     0024                     ___llmod@dividend:	
+   467                           ; 4 bytes @ 0x4
+   468                           
+   469                           
+   470                           ; 4 bytes @ 0x4
+   471     0024                     	ds	1
+   472     0025                     ??_SPI_Send_16bit:
+   473                           
+   474                           ; 1 bytes @ 0x5
+   475     0025                     	ds	2
+   476     0027                     _Dio_Config$56:
+   477                           
+   478                           ; 2 bytes @ 0x7
+   479     0027                     	ds	1
+   480     0028                     ??___lldiv:
+   481     0028                     ??___llmod:	
+   482                           ; 1 bytes @ 0x8
+   483                           
+   484                           
+   485                           ; 1 bytes @ 0x8
+   486     0028                     	ds	1
+   487     0029                     Dio_Config@pinNumber:
+   488     0029                     ___llmod@counter:	
+   489                           ; 1 bytes @ 0x9
+   490                           
+   491     0029                     ___lldiv@quotient:	
+   492                           ; 1 bytes @ 0x9
+   493                           
+   494                           
+   495                           ; 4 bytes @ 0x9
+   496     0029                     	ds	1
+   497     002A                     SPI_Send_16bit@bit:
+   498                           
+   499                           ; 2 bytes @ 0xA
+   500     002A                     	ds	2
+   501     002C                     ?_MAX7219_DisplayData:
+   502     002C                     MAX7219_DisplayData@character:	
+   503                           ; 1 bytes @ 0xC
+   504                           
+   505                           
+   506                           ; 1 bytes @ 0xC
+   507     002C                     	ds	1
+   508     002D                     ___lldiv@counter:
+   509     002D                     ??_MAX7219_DisplayData:	
+   510                           ; 1 bytes @ 0xD
+   511                           
+   512                           
+   513                           ; 1 bytes @ 0xD
+   514     002D                     	ds	4
+   515     0031                     MAX7219_DisplayData@digit:
+   516                           
+   517                           ; 1 bytes @ 0x11
+   518     0031                     	ds	1
+   519     0032                     ?_MAX7219_DisplayNumber:
+   520     0032                     MAX7219_DisplayNumber@number:	
+   521                           ; 1 bytes @ 0x12
+   522                           
+   523                           
+   524                           ; 4 bytes @ 0x12
+   525     0032                     	ds	4
+   526     0036                     MAX7219_DisplayNumber@i:
+   527                           
+   528                           ; 1 bytes @ 0x16
+   529     0036                     	ds	1
+   530                           
+   531                           	psect	maintext
+   532     01CE                     __pmaintext:	
+   533 ;;
+   534 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   535 ;;
+   536 ;; *************** function _main *****************
+   537 ;; Defined at:
+   538 ;;		line 32 in file "main.c"
+   539 ;; Parameters:    Size  Location     Type
+   540 ;;		None
+   541 ;; Auto vars:     Size  Location     Type
+   542 ;;		None
+   543 ;; Return value:  Size  Location     Type
+   544 ;;                  2  126[None  ] int 
+   545 ;; Registers used:
+   546 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   547 ;; Tracked objects:
+   548 ;;		On entry : B00/0
+   549 ;;		On exit  : 100/0
+   550 ;;		Unchanged: 0/0
+   551 ;; Data sizes:     COMMON   BANK0
+   552 ;;      Params:         0       0
+   553 ;;      Locals:         0       0
+   554 ;;      Temps:          0       0
+   555 ;;      Totals:         0       0
+   556 ;;Total ram usage:        0 bytes
+   557 ;; Hardware stack levels required when called: 4
+   558 ;; This function calls:
+   559 ;;		_Adc_Init
+   560 ;;		_Dio_init
+   561 ;;		_Gpio_Init
+   562 ;;		_MAX7219_DisplayNumber
+   563 ;;		_MAX7219_Init
+   564 ;;		_SPI_Init
+   565 ;; This function is called by:
+   566 ;;		Startup code after reset
+   567 ;; This function uses a non-reentrant model
+   568 ;;
+   569                           
+   570     01CE                     _main:	
+   571                           ;psect for function _main
+   572                           
+   573                           
+   574                           ;main.c: 33:         Gpio_Init();
+   575                           
+   576                           ;incstack = 0
+   577                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   578     01CE  21EF               	fcall	_Gpio_Init
+   579                           
+   580                           ;main.c: 34:         Dio_init();
+   581     01CF  21C0               	fcall	_Dio_init
+   582                           
+   583                           ;main.c: 35:         Adc_Init();
+   584     01D0  21B3               	fcall	_Adc_Init
+   585                           
+   586                           ;main.c: 36:         SPI_Init();
+   587     01D1  2202               	fcall	_SPI_Init
+   588                           
+   589                           ;main.c: 37:       MAX7219_Init();
+   590     01D2  2219               	fcall	_MAX7219_Init
+   591                           
+   592                           ;main.c: 61:     MAX7219_DisplayNumber(12345678);
+   593     01D3  3000               	movlw	0
+   594     01D4  00B5               	movwf	MAX7219_DisplayNumber@number+3
+   595     01D5  30BC               	movlw	188
+   596     01D6  00B4               	movwf	MAX7219_DisplayNumber@number+2
+   597     01D7  3061               	movlw	97
+   598     01D8  00B3               	movwf	MAX7219_DisplayNumber@number+1
+   599     01D9  304E               	movlw	78
+   600     01DA  00B2               	movwf	MAX7219_DisplayNumber@number
+   601     01DB  2253               	fcall	_MAX7219_DisplayNumber
+   602     01DC                     l127:	
+   603                           ;main.c: 72:     while (1){
+   604                           
+   605                           
+   606                           ;main.c: 74:     }
+   607     01DC  29DC               	goto	l127
+   608     01DD                     __end_of_main:
+   609                           
+   610                           	psect	text1
+   611     0202                     __ptext1:	
+   612 ;; *************** function _SPI_Init *****************
+   613 ;; Defined at:
+   614 ;;		line 12 in file "SERVICE/scr/Spi.c"
+   615 ;; Parameters:    Size  Location     Type
+   616 ;;		None
+   617 ;; Auto vars:     Size  Location     Type
+   618 ;;		None
+   619 ;; Return value:  Size  Location     Type
+   620 ;;                  1    wreg      void 
+   621 ;; Registers used:
+   622 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   623 ;; Tracked objects:
+   624 ;;		On entry : 100/0
+   625 ;;		On exit  : 100/100
+   626 ;;		Unchanged: 0/0
+   627 ;; Data sizes:     COMMON   BANK0
+   628 ;;      Params:         0       0
+   629 ;;      Locals:         0       0
+   630 ;;      Temps:          0       0
+   631 ;;      Totals:         0       0
+   632 ;;Total ram usage:        0 bytes
+   633 ;; Hardware stack levels used: 1
+   634 ;; Hardware stack levels required when called: 1
+   635 ;; This function calls:
+   636 ;;		_Dio_Config
+   637 ;; This function is called by:
+   638 ;;		_main
+   639 ;; This function uses a non-reentrant model
+   640 ;;
+   641                           
+   642     0202                     _SPI_Init:	
+   643                           ;psect for function _SPI_Init
+   644                           
+   645                           
+   646                           ;SERVICE/scr/Spi.c: 13:  Dio_Config (1, 1, 1 , 0);
+   647                           
+   648                           ;incstack = 0
+   649                           ; Regs used in _SPI_Init: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   650     0202  01A0               	clrf	Dio_Config@direction
+   651     0203  0AA0               	incf	Dio_Config@direction,f
+   652     0204  01A1               	clrf	Dio_Config@state
+   653     0205  0AA1               	incf	Dio_Config@state,f
+   654     0206  01A2               	clrf	Dio_Config@pullType
+   655     0207  3001               	movlw	1
+   656     0208  2381               	fcall	_Dio_Config
+   657                           
+   658                           ;SERVICE/scr/Spi.c: 14:  Dio_Config (2, 1, 0 , 0);
+   659     0209  1283               	bcf	3,5	;RP0=0, select bank0
+   660     020A  01A0               	clrf	Dio_Config@direction
+   661     020B  0AA0               	incf	Dio_Config@direction,f
+   662     020C  01A1               	clrf	Dio_Config@state
+   663     020D  01A2               	clrf	Dio_Config@pullType
+   664     020E  3002               	movlw	2
+   665     020F  2381               	fcall	_Dio_Config
+   666                           
+   667                           ;SERVICE/scr/Spi.c: 15:  Dio_Config (5, 1, 1 , 0);
+   668     0210  1283               	bcf	3,5	;RP0=0, select bank0
+   669     0211  01A0               	clrf	Dio_Config@direction
+   670     0212  0AA0               	incf	Dio_Config@direction,f
+   671     0213  01A1               	clrf	Dio_Config@state
+   672     0214  0AA1               	incf	Dio_Config@state,f
+   673     0215  01A2               	clrf	Dio_Config@pullType
+   674     0216  3005               	movlw	5
+   675     0217  2381               	fcall	_Dio_Config
+   676     0218  0008               	return
+   677     0219                     __end_of_SPI_Init:
+   678                           
+   679                           	psect	text2
+   680     0219                     __ptext2:	
+   681 ;; *************** function _MAX7219_Init *****************
+   682 ;; Defined at:
+   683 ;;		line 8 in file "HAL/scr/max7219.c"
+   684 ;; Parameters:    Size  Location     Type
+   685 ;;		None
+   686 ;; Auto vars:     Size  Location     Type
+   687 ;;		None
+   688 ;; Return value:  Size  Location     Type
+   689 ;;                  1    wreg      void 
+   690 ;; Registers used:
+   691 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   692 ;; Tracked objects:
+   693 ;;		On entry : 100/100
+   694 ;;		On exit  : 100/0
+   695 ;;		Unchanged: 0/0
+   696 ;; Data sizes:     COMMON   BANK0
+   697 ;;      Params:         0       0
+   698 ;;      Locals:         0       0
+   699 ;;      Temps:          0       0
+   700 ;;      Totals:         0       0
+   701 ;;Total ram usage:        0 bytes
+   702 ;; Hardware stack levels used: 1
+   703 ;; Hardware stack levels required when called: 2
+   704 ;; This function calls:
+   705 ;;		_SPI_Send_16bit
+   706 ;; This function is called by:
+   707 ;;		_main
+   708 ;; This function uses a non-reentrant model
+   709 ;;
+   710                           
+   711     0219                     _MAX7219_Init:	
+   712                           ;psect for function _MAX7219_Init
+   713                           
+   714                           
+   715                           ;HAL/scr/max7219.c: 9:     SPI_Send_16bit(0x0900);
+   716                           
+   717                           ;incstack = 0
+   718                           ; Regs used in _MAX7219_Init: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   719     0219  3000               	movlw	0
+   720     021A  1283               	bcf	3,5	;RP0=0, select bank0
+   721     021B  00A3               	movwf	SPI_Send_16bit@data
+   722     021C  3009               	movlw	9
+   723     021D  00A4               	movwf	SPI_Send_16bit@data+1
+   724     021E  22D7               	fcall	_SPI_Send_16bit
+   725                           
+   726                           ;HAL/scr/max7219.c: 10:     SPI_Send_16bit(0x0A0F);
+   727     021F  300F               	movlw	15
+   728     0220  00A3               	movwf	SPI_Send_16bit@data
+   729     0221  300A               	movlw	10
+   730     0222  00A4               	movwf	SPI_Send_16bit@data+1
+   731     0223  22D7               	fcall	_SPI_Send_16bit
+   732                           
+   733                           ;HAL/scr/max7219.c: 11:     SPI_Send_16bit(0xFBF7);
+   734     0224  30F7               	movlw	247
+   735     0225  00A3               	movwf	SPI_Send_16bit@data
+   736     0226  30FB               	movlw	251
+   737     0227  00A4               	movwf	SPI_Send_16bit@data+1
+   738     0228  22D7               	fcall	_SPI_Send_16bit
+   739                           
+   740                           ;HAL/scr/max7219.c: 12:     SPI_Send_16bit(0x0C01);
+   741     0229  3001               	movlw	1
+   742     022A  00A3               	movwf	SPI_Send_16bit@data
+   743     022B  300C               	movlw	12
+   744     022C  00A4               	movwf	SPI_Send_16bit@data+1
+   745     022D  22D7               	fcall	_SPI_Send_16bit
+   746                           
+   747                           ;HAL/scr/max7219.c: 13:     SPI_Send_16bit(0x0F00);
+   748     022E  3000               	movlw	0
+   749     022F  00A3               	movwf	SPI_Send_16bit@data
+   750     0230  300F               	movlw	15
+   751     0231  00A4               	movwf	SPI_Send_16bit@data+1
+   752     0232  22D7               	fcall	_SPI_Send_16bit
+   753     0233  0008               	return
+   754     0234                     __end_of_MAX7219_Init:
+   755                           
+   756                           	psect	text3
+   757     0253                     __ptext3:	
+   758 ;; *************** function _MAX7219_DisplayNumber *****************
+   759 ;; Defined at:
+   760 ;;		line 31 in file "HAL/scr/max7219.c"
+   761 ;; Parameters:    Size  Location     Type
+   762 ;;  number          4   18[BANK0 ] unsigned long 
+   763 ;; Auto vars:     Size  Location     Type
+   764 ;;  i               1   22[BANK0 ] unsigned char 
+   765 ;; Return value:  Size  Location     Type
+   766 ;;                  1    wreg      void 
+   767 ;; Registers used:
+   768 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   769 ;; Tracked objects:
+   770 ;;		On entry : 100/0
+   771 ;;		On exit  : 100/0
+   772 ;;		Unchanged: 0/0
+   773 ;; Data sizes:     COMMON   BANK0
+   774 ;;      Params:         0       4
+   775 ;;      Locals:         0       1
+   776 ;;      Temps:          0       0
+   777 ;;      Totals:         0       5
+   778 ;;Total ram usage:        5 bytes
+   779 ;; Hardware stack levels used: 1
+   780 ;; Hardware stack levels required when called: 3
+   781 ;; This function calls:
+   782 ;;		_MAX7219_DisplayData
+   783 ;;		___lldiv
+   784 ;;		___llmod
+   785 ;; This function is called by:
+   786 ;;		_main
+   787 ;; This function uses a non-reentrant model
+   788 ;;
+   789                           
+   790     0253                     _MAX7219_DisplayNumber:	
+   791                           ;psect for function _MAX7219_DisplayNumber
+   792                           
+   793                           
+   794                           ;HAL/scr/max7219.c: 32:         for (uint8_t i = 0; i < 8; i++) {
+   795                           
+   796                           ;incstack = 0
+   797                           ; Regs used in _MAX7219_DisplayNumber: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+csta
+      +                          ck]
+   798     0253  01B6               	clrf	MAX7219_DisplayNumber@i
+   799     0254                     l1023:
+   800                           
+   801                           ;HAL/scr/max7219.c: 33:             MAX7219_DisplayData(0x01 +i, MAX7219_CharTable[numbe
+      +                          r % 10]);
+   802     0254  3000               	movlw	0
+   803     0255  00A3               	movwf	___llmod@divisor+3
+   804     0256  3000               	movlw	0
+   805     0257  00A2               	movwf	___llmod@divisor+2
+   806     0258  3000               	movlw	0
+   807     0259  00A1               	movwf	___llmod@divisor+1
+   808     025A  300A               	movlw	10
+   809     025B  00A0               	movwf	___llmod@divisor
+   810     025C  0835               	movf	MAX7219_DisplayNumber@number+3,w
+   811     025D  00A7               	movwf	___llmod@dividend+3
+   812     025E  0834               	movf	MAX7219_DisplayNumber@number+2,w
+   813     025F  00A6               	movwf	___llmod@dividend+2
+   814     0260  0833               	movf	MAX7219_DisplayNumber@number+1,w
+   815     0261  00A5               	movwf	___llmod@dividend+1
+   816     0262  0832               	movf	MAX7219_DisplayNumber@number,w
+   817     0263  00A4               	movwf	___llmod@dividend
+   818     0264  228D               	fcall	___llmod
+   819     0265  0820               	movf	?___llmod,w
+   820     0266  3E01               	addlw	low ((_MAX7219_CharTable-__stringbase)| (0+32768))
+   821     0267  0084               	movwf	4
+   822     0268  2001               	fcall	stringdir
+   823     0269  00AC               	movwf	MAX7219_DisplayData@character
+   824     026A  0836               	movf	MAX7219_DisplayNumber@i,w
+   825     026B  3E01               	addlw	1
+   826     026C  21DD               	fcall	_MAX7219_DisplayData
+   827                           
+   828                           ;HAL/scr/max7219.c: 34:             number /= 10;
+   829     026D  3000               	movlw	0
+   830     026E  00A3               	movwf	___lldiv@divisor+3
+   831     026F  3000               	movlw	0
+   832     0270  00A2               	movwf	___lldiv@divisor+2
+   833     0271  3000               	movlw	0
+   834     0272  00A1               	movwf	___lldiv@divisor+1
+   835     0273  300A               	movlw	10
+   836     0274  00A0               	movwf	___lldiv@divisor
+   837     0275  0835               	movf	MAX7219_DisplayNumber@number+3,w
+   838     0276  00A7               	movwf	___lldiv@dividend+3
+   839     0277  0834               	movf	MAX7219_DisplayNumber@number+2,w
+   840     0278  00A6               	movwf	___lldiv@dividend+2
+   841     0279  0833               	movf	MAX7219_DisplayNumber@number+1,w
+   842     027A  00A5               	movwf	___lldiv@dividend+1
+   843     027B  0832               	movf	MAX7219_DisplayNumber@number,w
+   844     027C  00A4               	movwf	___lldiv@dividend
+   845     027D  2325               	fcall	___lldiv
+   846     027E  0823               	movf	?___lldiv+3,w
+   847     027F  00B5               	movwf	MAX7219_DisplayNumber@number+3
+   848     0280  0822               	movf	?___lldiv+2,w
+   849     0281  00B4               	movwf	MAX7219_DisplayNumber@number+2
+   850     0282  0821               	movf	?___lldiv+1,w
+   851     0283  00B3               	movwf	MAX7219_DisplayNumber@number+1
+   852     0284  0820               	movf	?___lldiv,w
+   853     0285  00B2               	movwf	MAX7219_DisplayNumber@number
+   854                           
+   855                           ;HAL/scr/max7219.c: 35:         }
+   856     0286  3001               	movlw	1
+   857     0287  07B6               	addwf	MAX7219_DisplayNumber@i,f
+   858     0288  3008               	movlw	8
+   859     0289  0236               	subwf	MAX7219_DisplayNumber@i,w
+   860     028A  1803               	btfsc	3,0
+   861     028B  0008               	return
+   862     028C  2A54               	goto	l1023
+   863     028D                     __end_of_MAX7219_DisplayNumber:
+   864                           
+   865                           	psect	text4
+   866     028D                     __ptext4:	
+   867 ;; *************** function ___llmod *****************
+   868 ;; Defined at:
+   869 ;;		line 5 in file "C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\llmod.c"
+   870 ;; Parameters:    Size  Location     Type
+   871 ;;  divisor         4    0[BANK0 ] unsigned long 
+   872 ;;  dividend        4    4[BANK0 ] unsigned long 
+   873 ;; Auto vars:     Size  Location     Type
+   874 ;;  counter         1    9[BANK0 ] unsigned char 
+   875 ;; Return value:  Size  Location     Type
+   876 ;;                  4    0[BANK0 ] unsigned long 
+   877 ;; Registers used:
+   878 ;;		wreg, status,2, status,0
+   879 ;; Tracked objects:
+   880 ;;		On entry : 100/0
+   881 ;;		On exit  : 100/0
+   882 ;;		Unchanged: 0/0
+   883 ;; Data sizes:     COMMON   BANK0
+   884 ;;      Params:         0       8
+   885 ;;      Locals:         0       1
+   886 ;;      Temps:          0       1
+   887 ;;      Totals:         0      10
+   888 ;;Total ram usage:       10 bytes
+   889 ;; Hardware stack levels used: 1
+   890 ;; This function calls:
+   891 ;;		Nothing
+   892 ;; This function is called by:
+   893 ;;		_MAX7219_DisplayNumber
+   894 ;; This function uses a non-reentrant model
+   895 ;;
+   896                           
+   897     028D                     ___llmod:	
+   898                           ;psect for function ___llmod
+   899                           
+   900                           
+   901                           ;incstack = 0
+   902                           ; Regs used in ___llmod: [wreg+status,2+status,0]
+   903     028D  0823               	movf	___llmod@divisor+3,w
+   904     028E  0422               	iorwf	___llmod@divisor+2,w
+   905     028F  0421               	iorwf	___llmod@divisor+1,w
+   906     0290  0420               	iorwf	___llmod@divisor,w
+   907     0291  1903               	skipnz
+   908     0292  2ACE               	goto	l969
+   909     0293  3001               	movlw	1
+   910     0294  00A9               	movwf	___llmod@counter
+   911     0295                     l959:
+   912     0295  1BA3               	btfsc	___llmod@divisor+3,7
+   913     0296  2AA3               	goto	l961
+   914     0297  3001               	movlw	1
+   915     0298  00A8               	movwf	??___llmod
+   916     0299                     u555:
+   917     0299  1003               	clrc
+   918     029A  0DA0               	rlf	___llmod@divisor,f
+   919     029B  0DA1               	rlf	___llmod@divisor+1,f
+   920     029C  0DA2               	rlf	___llmod@divisor+2,f
+   921     029D  0DA3               	rlf	___llmod@divisor+3,f
+   922     029E  0BA8               	decfsz	??___llmod,f
+   923     029F  2A99               	goto	u555
+   924     02A0  3001               	movlw	1
+   925     02A1  07A9               	addwf	___llmod@counter,f
+   926     02A2  2A95               	goto	l959
+   927     02A3                     l961:
+   928     02A3  0823               	movf	___llmod@divisor+3,w
+   929     02A4  0227               	subwf	___llmod@dividend+3,w
+   930     02A5  1D03               	skipz
+   931     02A6  2AB1               	goto	u575
+   932     02A7  0822               	movf	___llmod@divisor+2,w
+   933     02A8  0226               	subwf	___llmod@dividend+2,w
+   934     02A9  1D03               	skipz
+   935     02AA  2AB1               	goto	u575
+   936     02AB  0821               	movf	___llmod@divisor+1,w
+   937     02AC  0225               	subwf	___llmod@dividend+1,w
+   938     02AD  1D03               	skipz
+   939     02AE  2AB1               	goto	u575
+   940     02AF  0820               	movf	___llmod@divisor,w
+   941     02B0  0224               	subwf	___llmod@dividend,w
+   942     02B1                     u575:
+   943     02B1  1C03               	skipc
+   944     02B2  2AC1               	goto	l965
+   945     02B3  0820               	movf	___llmod@divisor,w
+   946     02B4  02A4               	subwf	___llmod@dividend,f
+   947     02B5  0821               	movf	___llmod@divisor+1,w
+   948     02B6  1C03               	skipc
+   949     02B7  0F21               	incfsz	___llmod@divisor+1,w
+   950     02B8  02A5               	subwf	___llmod@dividend+1,f
+   951     02B9  0822               	movf	___llmod@divisor+2,w
+   952     02BA  1C03               	skipc
+   953     02BB  0F22               	incfsz	___llmod@divisor+2,w
+   954     02BC  02A6               	subwf	___llmod@dividend+2,f
+   955     02BD  0823               	movf	___llmod@divisor+3,w
+   956     02BE  1C03               	skipc
+   957     02BF  0F23               	incfsz	___llmod@divisor+3,w
+   958     02C0  02A7               	subwf	___llmod@dividend+3,f
+   959     02C1                     l965:
+   960     02C1  3001               	movlw	1
+   961     02C2                     u585:
+   962     02C2  1003               	clrc
+   963     02C3  0CA3               	rrf	___llmod@divisor+3,f
+   964     02C4  0CA2               	rrf	___llmod@divisor+2,f
+   965     02C5  0CA1               	rrf	___llmod@divisor+1,f
+   966     02C6  0CA0               	rrf	___llmod@divisor,f
+   967     02C7  3EFF               	addlw	-1
+   968     02C8  1D03               	skipz
+   969     02C9  2AC2               	goto	u585
+   970     02CA  3001               	movlw	1
+   971     02CB  02A9               	subwf	___llmod@counter,f
+   972     02CC  1D03               	btfss	3,2
+   973     02CD  2AA3               	goto	l961
+   974     02CE                     l969:
+   975     02CE  0827               	movf	___llmod@dividend+3,w
+   976     02CF  00A3               	movwf	?___llmod+3
+   977     02D0  0826               	movf	___llmod@dividend+2,w
+   978     02D1  00A2               	movwf	?___llmod+2
+   979     02D2  0825               	movf	___llmod@dividend+1,w
+   980     02D3  00A1               	movwf	?___llmod+1
+   981     02D4  0824               	movf	___llmod@dividend,w
+   982     02D5  00A0               	movwf	?___llmod
+   983     02D6  0008               	return
+   984     02D7                     __end_of___llmod:
+   985                           
+   986                           	psect	text5
+   987     0325                     __ptext5:	
+   988 ;; *************** function ___lldiv *****************
+   989 ;; Defined at:
+   990 ;;		line 5 in file "C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\__lldiv.c"
+   991 ;; Parameters:    Size  Location     Type
+   992 ;;  divisor         4    0[BANK0 ] unsigned long 
+   993 ;;  dividend        4    4[BANK0 ] unsigned long 
+   994 ;; Auto vars:     Size  Location     Type
+   995 ;;  quotient        4    9[BANK0 ] unsigned long 
+   996 ;;  counter         1   13[BANK0 ] unsigned char 
+   997 ;; Return value:  Size  Location     Type
+   998 ;;                  4    0[BANK0 ] unsigned long 
+   999 ;; Registers used:
+  1000 ;;		wreg, status,2, status,0
+  1001 ;; Tracked objects:
+  1002 ;;		On entry : 100/0
+  1003 ;;		On exit  : 100/0
+  1004 ;;		Unchanged: 0/0
+  1005 ;; Data sizes:     COMMON   BANK0
+  1006 ;;      Params:         0       8
+  1007 ;;      Locals:         0       5
+  1008 ;;      Temps:          0       1
+  1009 ;;      Totals:         0      14
+  1010 ;;Total ram usage:       14 bytes
+  1011 ;; Hardware stack levels used: 1
+  1012 ;; This function calls:
+  1013 ;;		Nothing
+  1014 ;; This function is called by:
+  1015 ;;		_MAX7219_DisplayNumber
+  1016 ;; This function uses a non-reentrant model
+  1017 ;;
+  1018                           
+  1019     0325                     ___lldiv:	
+  1020                           ;psect for function ___lldiv
+  1021                           
+  1022                           
+  1023                           ;incstack = 0
+  1024                           ; Regs used in ___lldiv: [wreg+status,2+status,0]
+  1025     0325  3000               	movlw	0
+  1026     0326  00AC               	movwf	___lldiv@quotient+3
+  1027     0327  3000               	movlw	0
+  1028     0328  00AB               	movwf	___lldiv@quotient+2
+  1029     0329  3000               	movlw	0
+  1030     032A  00AA               	movwf	___lldiv@quotient+1
+  1031     032B  3000               	movlw	0
+  1032     032C  00A9               	movwf	___lldiv@quotient
+  1033     032D  0823               	movf	___lldiv@divisor+3,w
+  1034     032E  0422               	iorwf	___lldiv@divisor+2,w
+  1035     032F  0421               	iorwf	___lldiv@divisor+1,w
+  1036     0330  0420               	iorwf	___lldiv@divisor,w
+  1037     0331  1903               	skipnz
+  1038     0332  2B78               	goto	l949
+  1039     0333  3001               	movlw	1
+  1040     0334  00AD               	movwf	___lldiv@counter
+  1041     0335                     l935:
+  1042     0335  1BA3               	btfsc	___lldiv@divisor+3,7
+  1043     0336  2B43               	goto	l937
+  1044     0337  3001               	movlw	1
+  1045     0338  00A8               	movwf	??___lldiv
+  1046     0339                     u485:
+  1047     0339  1003               	clrc
+  1048     033A  0DA0               	rlf	___lldiv@divisor,f
+  1049     033B  0DA1               	rlf	___lldiv@divisor+1,f
+  1050     033C  0DA2               	rlf	___lldiv@divisor+2,f
+  1051     033D  0DA3               	rlf	___lldiv@divisor+3,f
+  1052     033E  0BA8               	decfsz	??___lldiv,f
+  1053     033F  2B39               	goto	u485
+  1054     0340  3001               	movlw	1
+  1055     0341  07AD               	addwf	___lldiv@counter,f
+  1056     0342  2B35               	goto	l935
+  1057     0343                     l937:
+  1058     0343  3001               	movlw	1
+  1059     0344  00A8               	movwf	??___lldiv
+  1060     0345                     u505:
+  1061     0345  1003               	clrc
+  1062     0346  0DA9               	rlf	___lldiv@quotient,f
+  1063     0347  0DAA               	rlf	___lldiv@quotient+1,f
+  1064     0348  0DAB               	rlf	___lldiv@quotient+2,f
+  1065     0349  0DAC               	rlf	___lldiv@quotient+3,f
+  1066     034A  0BA8               	decfsz	??___lldiv,f
+  1067     034B  2B45               	goto	u505
+  1068     034C  0823               	movf	___lldiv@divisor+3,w
+  1069     034D  0227               	subwf	___lldiv@dividend+3,w
+  1070     034E  1D03               	skipz
+  1071     034F  2B5A               	goto	u515
+  1072     0350  0822               	movf	___lldiv@divisor+2,w
+  1073     0351  0226               	subwf	___lldiv@dividend+2,w
+  1074     0352  1D03               	skipz
+  1075     0353  2B5A               	goto	u515
+  1076     0354  0821               	movf	___lldiv@divisor+1,w
+  1077     0355  0225               	subwf	___lldiv@dividend+1,w
+  1078     0356  1D03               	skipz
+  1079     0357  2B5A               	goto	u515
+  1080     0358  0820               	movf	___lldiv@divisor,w
+  1081     0359  0224               	subwf	___lldiv@dividend,w
+  1082     035A                     u515:
+  1083     035A  1C03               	skipc
+  1084     035B  2B6B               	goto	l945
+  1085     035C  0820               	movf	___lldiv@divisor,w
+  1086     035D  02A4               	subwf	___lldiv@dividend,f
+  1087     035E  0821               	movf	___lldiv@divisor+1,w
+  1088     035F  1C03               	skipc
+  1089     0360  0F21               	incfsz	___lldiv@divisor+1,w
+  1090     0361  02A5               	subwf	___lldiv@dividend+1,f
+  1091     0362  0822               	movf	___lldiv@divisor+2,w
+  1092     0363  1C03               	skipc
+  1093     0364  0F22               	incfsz	___lldiv@divisor+2,w
+  1094     0365  02A6               	subwf	___lldiv@dividend+2,f
+  1095     0366  0823               	movf	___lldiv@divisor+3,w
+  1096     0367  1C03               	skipc
+  1097     0368  0F23               	incfsz	___lldiv@divisor+3,w
+  1098     0369  02A7               	subwf	___lldiv@dividend+3,f
+  1099     036A  1429               	bsf	___lldiv@quotient,0
+  1100     036B                     l945:
+  1101     036B  3001               	movlw	1
+  1102     036C                     u525:
+  1103     036C  1003               	clrc
+  1104     036D  0CA3               	rrf	___lldiv@divisor+3,f
+  1105     036E  0CA2               	rrf	___lldiv@divisor+2,f
+  1106     036F  0CA1               	rrf	___lldiv@divisor+1,f
+  1107     0370  0CA0               	rrf	___lldiv@divisor,f
+  1108     0371  3EFF               	addlw	-1
+  1109     0372  1D03               	skipz
+  1110     0373  2B6C               	goto	u525
+  1111     0374  3001               	movlw	1
+  1112     0375  02AD               	subwf	___lldiv@counter,f
+  1113     0376  1D03               	btfss	3,2
+  1114     0377  2B43               	goto	l937
+  1115     0378                     l949:
+  1116     0378  082C               	movf	___lldiv@quotient+3,w
+  1117     0379  00A3               	movwf	?___lldiv+3
+  1118     037A  082B               	movf	___lldiv@quotient+2,w
+  1119     037B  00A2               	movwf	?___lldiv+2
+  1120     037C  082A               	movf	___lldiv@quotient+1,w
+  1121     037D  00A1               	movwf	?___lldiv+1
+  1122     037E  0829               	movf	___lldiv@quotient,w
+  1123     037F  00A0               	movwf	?___lldiv
+  1124     0380  0008               	return
+  1125     0381                     __end_of___lldiv:
+  1126                           
+  1127                           	psect	text6
+  1128     01DD                     __ptext6:	
+  1129 ;; *************** function _MAX7219_DisplayData *****************
+  1130 ;; Defined at:
+  1131 ;;		line 26 in file "HAL/scr/max7219.c"
+  1132 ;; Parameters:    Size  Location     Type
+  1133 ;;  digit           1    wreg     unsigned char 
+  1134 ;;  character       1   12[BANK0 ] unsigned char 
+  1135 ;; Auto vars:     Size  Location     Type
+  1136 ;;  digit           1   17[BANK0 ] unsigned char 
+  1137 ;; Return value:  Size  Location     Type
+  1138 ;;                  1    wreg      void 
+  1139 ;; Registers used:
+  1140 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+  1141 ;; Tracked objects:
+  1142 ;;		On entry : 100/0
+  1143 ;;		On exit  : 100/0
+  1144 ;;		Unchanged: 0/0
+  1145 ;; Data sizes:     COMMON   BANK0
+  1146 ;;      Params:         0       1
+  1147 ;;      Locals:         0       1
+  1148 ;;      Temps:          0       4
+  1149 ;;      Totals:         0       6
+  1150 ;;Total ram usage:        6 bytes
+  1151 ;; Hardware stack levels used: 1
+  1152 ;; Hardware stack levels required when called: 2
+  1153 ;; This function calls:
+  1154 ;;		_SPI_Send_16bit
+  1155 ;; This function is called by:
+  1156 ;;		_MAX7219_DisplayNumber
+  1157 ;; This function uses a non-reentrant model
+  1158 ;;
+  1159                           
+  1160     01DD                     _MAX7219_DisplayData:	
+  1161                           ;psect for function _MAX7219_DisplayData
+  1162                           
+  1163                           
+  1164                           ;incstack = 0
+  1165                           ; Regs used in _MAX7219_DisplayData: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+  1166                           ;MAX7219_DisplayData@digit stored from wreg
+  1167     01DD  00B1               	movwf	MAX7219_DisplayData@digit
+  1168                           
+  1169                           ;HAL/scr/max7219.c: 27:     SPI_Send_16bit((digit) << 8 | character);
+  1170     01DE  082C               	movf	MAX7219_DisplayData@character,w
+  1171     01DF  00AD               	movwf	??_MAX7219_DisplayData
+  1172     01E0  01AE               	clrf	??_MAX7219_DisplayData+1
+  1173     01E1  0831               	movf	MAX7219_DisplayData@digit,w
+  1174     01E2  00AF               	movwf	??_MAX7219_DisplayData+2
+  1175     01E3  01B0               	clrf	??_MAX7219_DisplayData+3
+  1176     01E4  082F               	movf	??_MAX7219_DisplayData+2,w
+  1177     01E5  00B0               	movwf	??_MAX7219_DisplayData+3
+  1178     01E6  01AF               	clrf	??_MAX7219_DisplayData+2
+  1179     01E7  082D               	movf	??_MAX7219_DisplayData,w
+  1180     01E8  042F               	iorwf	??_MAX7219_DisplayData+2,w
+  1181     01E9  00A3               	movwf	SPI_Send_16bit@data
+  1182     01EA  082E               	movf	??_MAX7219_DisplayData+1,w
+  1183     01EB  0430               	iorwf	??_MAX7219_DisplayData+3,w
+  1184     01EC  00A4               	movwf	SPI_Send_16bit@data+1
+  1185     01ED  22D7               	fcall	_SPI_Send_16bit
+  1186     01EE  0008               	return
+  1187     01EF                     __end_of_MAX7219_DisplayData:
+  1188                           
+  1189                           	psect	text7
+  1190     02D7                     __ptext7:	
+  1191 ;; *************** function _SPI_Send_16bit *****************
+  1192 ;; Defined at:
+  1193 ;;		line 36 in file "SERVICE/scr/Spi.c"
+  1194 ;; Parameters:    Size  Location     Type
+  1195 ;;  data            2    3[BANK0 ] unsigned short 
+  1196 ;; Auto vars:     Size  Location     Type
+  1197 ;;  bit             2   10[BANK0 ] int 
+  1198 ;; Return value:  Size  Location     Type
+  1199 ;;                  1    wreg      void 
+  1200 ;; Registers used:
+  1201 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+  1202 ;; Tracked objects:
+  1203 ;;		On entry : 100/0
+  1204 ;;		On exit  : 100/0
+  1205 ;;		Unchanged: 0/0
+  1206 ;; Data sizes:     COMMON   BANK0
+  1207 ;;      Params:         0       2
+  1208 ;;      Locals:         0       2
+  1209 ;;      Temps:          0       5
+  1210 ;;      Totals:         0       9
+  1211 ;;Total ram usage:        9 bytes
+  1212 ;; Hardware stack levels used: 1
+  1213 ;; Hardware stack levels required when called: 1
+  1214 ;; This function calls:
+  1215 ;;		_Dio_Pin_Write
+  1216 ;; This function is called by:
+  1217 ;;		_MAX7219_Init
+  1218 ;;		_MAX7219_DisplayData
+  1219 ;; This function uses a non-reentrant model
+  1220 ;;
+  1221                           
+  1222     02D7                     _SPI_Send_16bit:	
+  1223                           ;psect for function _SPI_Send_16bit
+  1224                           
+  1225                           
+  1226                           ;SERVICE/scr/Spi.c: 37:     Dio_Pin_Write(5, 0);
+  1227                           
+  1228                           ;incstack = 0
+  1229                           ; Regs used in _SPI_Send_16bit: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+  1230     02D7  01A0               	clrf	Dio_Pin_Write@state
+  1231     02D8  3005               	movlw	5
+  1232     02D9  2234               	fcall	_Dio_Pin_Write
+  1233                           
+  1234                           ;SERVICE/scr/Spi.c: 38:     for (int bit =0 ; bit <16 ; bit ++ ) {
+  1235     02DA  01AA               	clrf	SPI_Send_16bit@bit
+  1236     02DB  01AB               	clrf	SPI_Send_16bit@bit+1
+  1237     02DC                     l885:
+  1238                           
+  1239                           ;SERVICE/scr/Spi.c: 40:         if (data & (1 << (15 - bit))) {
+  1240     02DC  1283               	bcf	3,5	;RP0=0, select bank0
+  1241     02DD  082A               	movf	SPI_Send_16bit@bit,w
+  1242     02DE  3C0F               	sublw	15
+  1243     02DF  00A5               	movwf	??_SPI_Send_16bit
+  1244     02E0  0AA5               	incf	??_SPI_Send_16bit,f
+  1245     02E1  3001               	movlw	1
+  1246     02E2  00A6               	movwf	??_SPI_Send_16bit+1
+  1247     02E3  3000               	movlw	0
+  1248     02E4  00A7               	movwf	??_SPI_Send_16bit+2
+  1249     02E5  2AE9               	goto	u344
+  1250     02E6                     u345:
+  1251     02E6  1003               	clrc
+  1252     02E7  0DA6               	rlf	??_SPI_Send_16bit+1,f
+  1253     02E8  0DA7               	rlf	??_SPI_Send_16bit+2,f
+  1254     02E9                     u344:
+  1255     02E9  0BA5               	decfsz	??_SPI_Send_16bit,f
+  1256     02EA  2AE6               	goto	u345
+  1257     02EB  0823               	movf	SPI_Send_16bit@data,w
+  1258     02EC  0526               	andwf	??_SPI_Send_16bit+1,w
+  1259     02ED  00A8               	movwf	??_SPI_Send_16bit+3
+  1260     02EE  0824               	movf	SPI_Send_16bit@data+1,w
+  1261     02EF  0527               	andwf	??_SPI_Send_16bit+2,w
+  1262     02F0  00A9               	movwf	??_SPI_Send_16bit+4
+  1263     02F1  0828               	movf	??_SPI_Send_16bit+3,w
+  1264     02F2  0429               	iorwf	??_SPI_Send_16bit+4,w
+  1265     02F3  1903               	btfsc	3,2
+  1266     02F4  2AF8               	goto	l889
+  1267                           
+  1268                           ;SERVICE/scr/Spi.c: 41:             Dio_Pin_Write(1, 1);
+  1269     02F5  01A0               	clrf	Dio_Pin_Write@state
+  1270     02F6  0AA0               	incf	Dio_Pin_Write@state,f
+  1271     02F7  2AF9               	goto	L1
+  1272     02F8                     l889:	
+  1273                           ;SERVICE/scr/Spi.c: 42:         } else {
+  1274                           
+  1275                           
+  1276                           ;SERVICE/scr/Spi.c: 43:            Dio_Pin_Write(1, 0) ;
+  1277     02F8  01A0               	clrf	Dio_Pin_Write@state
+  1278     02F9                     L1:
+  1279     02F9  3001               	movlw	1
+  1280     02FA  2234               	fcall	_Dio_Pin_Write
+  1281                           
+  1282                           ;SERVICE/scr/Spi.c: 46:   _delay((unsigned long)((50)*(4000000/4000000.0)));; Dio_Pin_Wr
+      +                          ite(2, 1); _delay((unsigned long)((50)*(4000000/4000000.0)));; Dio_Pin_Write(2, 0);;
+  1283     02FB  3010               	movlw	16
+  1284     02FC  00A5               	movwf	??_SPI_Send_16bit
+  1285     02FD                     u617:
+  1286     02FD  0BA5               	decfsz	??_SPI_Send_16bit,f
+  1287     02FE  2AFD               	goto	u617
+  1288     02FF  0000               	nop
+  1289     0300  1283               	bcf	3,5	;RP0=0, select bank0
+  1290     0301  01A0               	clrf	Dio_Pin_Write@state
+  1291     0302  0AA0               	incf	Dio_Pin_Write@state,f
+  1292     0303  3002               	movlw	2
+  1293     0304  2234               	fcall	_Dio_Pin_Write
+  1294     0305  3010               	movlw	16
+  1295     0306  00A5               	movwf	??_SPI_Send_16bit
+  1296     0307                     u627:
+  1297     0307  0BA5               	decfsz	??_SPI_Send_16bit,f
+  1298     0308  2B07               	goto	u627
+  1299     0309  0000               	nop
+  1300     030A  1283               	bcf	3,5	;RP0=0, select bank0
+  1301     030B  01A0               	clrf	Dio_Pin_Write@state
+  1302     030C  3002               	movlw	2
+  1303     030D  2234               	fcall	_Dio_Pin_Write
+  1304                           
+  1305                           ;SERVICE/scr/Spi.c: 47:     }
+  1306     030E  3001               	movlw	1
+  1307     030F  07AA               	addwf	SPI_Send_16bit@bit,f
+  1308     0310  1803               	skipnc
+  1309     0311  0AAB               	incf	SPI_Send_16bit@bit+1,f
+  1310     0312  3000               	movlw	0
+  1311     0313  07AB               	addwf	SPI_Send_16bit@bit+1,f
+  1312     0314  082B               	movf	SPI_Send_16bit@bit+1,w
+  1313     0315  3A80               	xorlw	128
+  1314     0316  00DF               	movwf	95
+  1315     0317  3080               	movlw	128
+  1316     0318  025F               	subwf	95,w
+  1317     0319  1D03               	skipz
+  1318     031A  2B1D               	goto	u365
+  1319     031B  3010               	movlw	16
+  1320     031C  022A               	subwf	SPI_Send_16bit@bit,w
+  1321     031D                     u365:
+  1322     031D  1C03               	skipc
+  1323     031E  2ADC               	goto	l885
+  1324                           
+  1325                           ;SERVICE/scr/Spi.c: 48:     Dio_Pin_Write(5, 1);
+  1326     031F  1283               	bcf	3,5	;RP0=0, select bank0
+  1327     0320  01A0               	clrf	Dio_Pin_Write@state
+  1328     0321  0AA0               	incf	Dio_Pin_Write@state,f
+  1329     0322  3005               	movlw	5
+  1330     0323  2234               	fcall	_Dio_Pin_Write
+  1331     0324  0008               	return
+  1332     0325                     __end_of_SPI_Send_16bit:
+  1333                           
+  1334                           	psect	text8
+  1335     0234                     __ptext8:	
+  1336 ;; *************** function _Dio_Pin_Write *****************
+  1337 ;; Defined at:
+  1338 ;;		line 30 in file "MCAL/scr/Dio.c"
+  1339 ;; Parameters:    Size  Location     Type
+  1340 ;;  pinNumber       1    wreg     unsigned char 
+  1341 ;;  state           1    0[BANK0 ] unsigned char 
+  1342 ;; Auto vars:     Size  Location     Type
+  1343 ;;  pinNumber       1    2[BANK0 ] unsigned char 
+  1344 ;; Return value:  Size  Location     Type
+  1345 ;;                  1    wreg      void 
+  1346 ;; Registers used:
+  1347 ;;		wreg, status,2, status,0
+  1348 ;; Tracked objects:
+  1349 ;;		On entry : 100/0
+  1350 ;;		On exit  : 100/0
+  1351 ;;		Unchanged: 0/0
+  1352 ;; Data sizes:     COMMON   BANK0
+  1353 ;;      Params:         0       1
+  1354 ;;      Locals:         0       1
+  1355 ;;      Temps:          0       1
+  1356 ;;      Totals:         0       3
+  1357 ;;Total ram usage:        3 bytes
+  1358 ;; Hardware stack levels used: 1
+  1359 ;; This function calls:
+  1360 ;;		Nothing
+  1361 ;; This function is called by:
+  1362 ;;		_SPI_Send_16bit
+  1363 ;; This function uses a non-reentrant model
+  1364 ;;
+  1365                           
+  1366     0234                     _Dio_Pin_Write:	
+  1367                           ;psect for function _Dio_Pin_Write
+  1368                           
+  1369                           
+  1370                           ;incstack = 0
+  1371                           ; Regs used in _Dio_Pin_Write: [wreg+status,2+status,0]
+  1372                           ;Dio_Pin_Write@pinNumber stored from wreg
+  1373     0234  00A2               	movwf	Dio_Pin_Write@pinNumber
+  1374                           
+  1375                           ;MCAL/scr/Dio.c: 32:     if (state == 1) {
+  1376     0235  0320               	decf	Dio_Pin_Write@state,w
+  1377     0236  1D03               	btfss	3,2
+  1378     0237  2A44               	goto	l873
+  1379                           
+  1380                           ;MCAL/scr/Dio.c: 33:         DIO_State |= (1 << pinNumber);
+  1381     0238  3001               	movlw	1
+  1382     0239  00A1               	movwf	??_Dio_Pin_Write
+  1383     023A  0A22               	incf	Dio_Pin_Write@pinNumber,w
+  1384     023B  2A3E               	goto	u324
+  1385     023C                     u325:
+  1386     023C  1003               	clrc
+  1387     023D  0DA1               	rlf	??_Dio_Pin_Write,f
+  1388     023E                     u324:
+  1389     023E  3EFF               	addlw	-1
+  1390     023F  1D03               	skipz
+  1391     0240  2A3C               	goto	u325
+  1392     0241  0821               	movf	??_Dio_Pin_Write,w
+  1393     0242  04BC               	iorwf	_DIO_State,f
+  1394                           
+  1395                           ;MCAL/scr/Dio.c: 34:     }
+  1396     0243  2A50               	goto	l875
+  1397     0244                     l873:
+  1398                           
+  1399                           ;MCAL/scr/Dio.c: 36:         DIO_State &= ~(1 << pinNumber);
+  1400     0244  3001               	movlw	1
+  1401     0245  00A1               	movwf	??_Dio_Pin_Write
+  1402     0246  0A22               	incf	Dio_Pin_Write@pinNumber,w
+  1403     0247  2A4A               	goto	u334
+  1404     0248                     u335:
+  1405     0248  1003               	clrc
+  1406     0249  0DA1               	rlf	??_Dio_Pin_Write,f
+  1407     024A                     u334:
+  1408     024A  3EFF               	addlw	-1
+  1409     024B  1D03               	skipz
+  1410     024C  2A48               	goto	u335
+  1411     024D  0821               	movf	??_Dio_Pin_Write,w
+  1412     024E  3AFF               	xorlw	255
+  1413     024F  05BC               	andwf	_DIO_State,f
+  1414     0250                     l875:
+  1415                           
+  1416                           ;MCAL/scr/Dio.c: 38:     GPIO = DIO_State ;
+  1417     0250  083C               	movf	_DIO_State,w
+  1418     0251  0085               	movwf	5	;volatile
+  1419     0252  0008               	return
+  1420     0253                     __end_of_Dio_Pin_Write:
+  1421                           
+  1422                           	psect	text9
+  1423     01EF                     __ptext9:	
+  1424 ;; *************** function _Gpio_Init *****************
+  1425 ;; Defined at:
+  1426 ;;		line 23 in file "MCAL/scr/gpio.c"
+  1427 ;; Parameters:    Size  Location     Type
+  1428 ;;		None
+  1429 ;; Auto vars:     Size  Location     Type
+  1430 ;;		None
+  1431 ;; Return value:  Size  Location     Type
+  1432 ;;                  1    wreg      void 
+  1433 ;; Registers used:
+  1434 ;;		wreg, status,2, status,0
+  1435 ;; Tracked objects:
+  1436 ;;		On entry : B00/0
+  1437 ;;		On exit  : B00/100
+  1438 ;;		Unchanged: A00/0
+  1439 ;; Data sizes:     COMMON   BANK0
+  1440 ;;      Params:         0       0
+  1441 ;;      Locals:         0       0
+  1442 ;;      Temps:          0       0
+  1443 ;;      Totals:         0       0
+  1444 ;;Total ram usage:        0 bytes
+  1445 ;; Hardware stack levels used: 1
+  1446 ;; This function calls:
+  1447 ;;		Nothing
+  1448 ;; This function is called by:
+  1449 ;;		_main
+  1450 ;; This function uses a non-reentrant model
+  1451 ;;
+  1452                           
+  1453     01EF                     _Gpio_Init:	
+  1454                           ;psect for function _Gpio_Init
+  1455                           
+  1456                           
+  1457                           ;MCAL/scr/gpio.c: 30:         ANSEL |= (1 << 0);
+  1458                           
+  1459                           ;incstack = 0
+  1460                           ; Regs used in _Gpio_Init: [wreg+status,2+status,0]
+  1461     01EF  1683               	bsf	3,5	;RP0=1, select bank1
+  1462     01F0  141F               	bsf	31,0	;volatile
+  1463                           
+  1464                           ;MCAL/scr/gpio.c: 31:         TRISIO |= (1 << 0);
+  1465     01F1  1405               	bsf	5,0	;volatile
+  1466                           
+  1467                           ;MCAL/scr/gpio.c: 52:         ANSEL &= ~(1 << 1);
+  1468     01F2  30FD               	movlw	253
+  1469     01F3  059F               	andwf	31,f	;volatile
+  1470                           
+  1471                           ;MCAL/scr/gpio.c: 53:         TRISIO &= ~(1 << 1);
+  1472     01F4  30FD               	movlw	253
+  1473     01F5  0585               	andwf	5,f	;volatile
+  1474                           
+  1475                           ;MCAL/scr/gpio.c: 70:         ANSEL &= ~(1 << 2);
+  1476     01F6  30FB               	movlw	251
+  1477     01F7  059F               	andwf	31,f	;volatile
+  1478                           
+  1479                           ;MCAL/scr/gpio.c: 71:         TRISIO &= ~(1 << 2);
+  1480     01F8  30FB               	movlw	251
+  1481     01F9  0585               	andwf	5,f	;volatile
+  1482                           
+  1483                           ;MCAL/scr/gpio.c: 76:         TRISIO |= (1 << 3);
+  1484     01FA  1585               	bsf	5,3	;volatile
+  1485                           
+  1486                           ;MCAL/scr/gpio.c: 83:         ANSEL &= ~(1 << 3);
+  1487     01FB  30F7               	movlw	247
+  1488     01FC  059F               	andwf	31,f	;volatile
+  1489                           
+  1490                           ;MCAL/scr/gpio.c: 84:         TRISIO &= ~(1 << 4);
+  1491     01FD  30EF               	movlw	239
+  1492     01FE  0585               	andwf	5,f	;volatile
+  1493                           
+  1494                           ;MCAL/scr/gpio.c: 102:         TRISIO &= ~(1 << 5);
+  1495     01FF  30DF               	movlw	223
+  1496     0200  0585               	andwf	5,f	;volatile
+  1497     0201  0008               	return
+  1498     0202                     __end_of_Gpio_Init:
+  1499                           
+  1500                           	psect	text10
+  1501     01C0                     __ptext10:	
+  1502 ;; *************** function _Dio_init *****************
+  1503 ;; Defined at:
+  1504 ;;		line 60 in file "MCAL/scr/Dio.c"
+  1505 ;; Parameters:    Size  Location     Type
+  1506 ;;		None
+  1507 ;; Auto vars:     Size  Location     Type
+  1508 ;;		None
+  1509 ;; Return value:  Size  Location     Type
+  1510 ;;                  1    wreg      void 
+  1511 ;; Registers used:
+  1512 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+  1513 ;; Tracked objects:
+  1514 ;;		On entry : B00/100
+  1515 ;;		On exit  : 100/100
+  1516 ;;		Unchanged: 0/0
+  1517 ;; Data sizes:     COMMON   BANK0
+  1518 ;;      Params:         0       0
+  1519 ;;      Locals:         0       0
+  1520 ;;      Temps:          0       0
+  1521 ;;      Totals:         0       0
+  1522 ;;Total ram usage:        0 bytes
+  1523 ;; Hardware stack levels used: 1
+  1524 ;; Hardware stack levels required when called: 1
+  1525 ;; This function calls:
+  1526 ;;		_Dio_Config
+  1527 ;; This function is called by:
+  1528 ;;		_main
+  1529 ;; This function uses a non-reentrant model
+  1530 ;;
+  1531                           
+  1532     01C0                     _Dio_init:	
+  1533                           ;psect for function _Dio_init
+  1534                           
+  1535                           
+  1536                           ;MCAL/scr/Dio.c: 72:        Dio_Config (3, 0, 0, 0);
+  1537                           
+  1538                           ;incstack = 0
+  1539                           ; Regs used in _Dio_init: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+  1540     01C0  1283               	bcf	3,5	;RP0=0, select bank0
+  1541     01C1  01A0               	clrf	Dio_Config@direction
+  1542     01C2  01A1               	clrf	Dio_Config@state
+  1543     01C3  01A2               	clrf	Dio_Config@pullType
+  1544     01C4  3003               	movlw	3
+  1545     01C5  2381               	fcall	_Dio_Config
+  1546                           
+  1547                           ;MCAL/scr/Dio.c: 75:        Dio_Config (4, 1, 0, 0);
+  1548     01C6  1283               	bcf	3,5	;RP0=0, select bank0
+  1549     01C7  01A0               	clrf	Dio_Config@direction
+  1550     01C8  0AA0               	incf	Dio_Config@direction,f
+  1551     01C9  01A1               	clrf	Dio_Config@state
+  1552     01CA  01A2               	clrf	Dio_Config@pullType
+  1553     01CB  3004               	movlw	4
+  1554     01CC  2381               	fcall	_Dio_Config
+  1555     01CD  0008               	return
+  1556     01CE                     __end_of_Dio_init:
+  1557                           
+  1558                           	psect	text11
+  1559     0381                     __ptext11:	
+  1560 ;; *************** function _Dio_Config *****************
+  1561 ;; Defined at:
+  1562 ;;		line 41 in file "MCAL/scr/Dio.c"
+  1563 ;; Parameters:    Size  Location     Type
+  1564 ;;  pinNumber       1    wreg     unsigned char 
+  1565 ;;  direction       1    0[BANK0 ] unsigned char 
+  1566 ;;  state           1    1[BANK0 ] unsigned char 
+  1567 ;;  pullType        1    2[BANK0 ] unsigned char 
+  1568 ;; Auto vars:     Size  Location     Type
+  1569 ;;  pinNumber       1    9[BANK0 ] unsigned char 
+  1570 ;; Return value:  Size  Location     Type
+  1571 ;;                  1    wreg      void 
+  1572 ;; Registers used:
+  1573 ;;		wreg, status,2, status,0, btemp+1
+  1574 ;; Tracked objects:
+  1575 ;;		On entry : 100/0
+  1576 ;;		On exit  : 100/100
+  1577 ;;		Unchanged: 0/0
+  1578 ;; Data sizes:     COMMON   BANK0
+  1579 ;;      Params:         0       3
+  1580 ;;      Locals:         0       3
+  1581 ;;      Temps:          0       4
+  1582 ;;      Totals:         0      10
+  1583 ;;Total ram usage:       10 bytes
+  1584 ;; Hardware stack levels used: 1
+  1585 ;; This function calls:
+  1586 ;;		Nothing
+  1587 ;; This function is called by:
+  1588 ;;		_Dio_init
+  1589 ;;		_SPI_Init
+  1590 ;; This function uses a non-reentrant model
+  1591 ;;
+  1592                           
+  1593     0381                     _Dio_Config:	
+  1594                           ;psect for function _Dio_Config
+  1595                           
+  1596                           
+  1597                           ;incstack = 0
+  1598                           ; Regs used in _Dio_Config: [wreg+status,2+status,0+btemp+1]
+  1599                           ;Dio_Config@pinNumber stored from wreg
+  1600     0381  00A9               	movwf	Dio_Config@pinNumber
+  1601                           
+  1602                           ;MCAL/scr/Dio.c: 43:     TRISIO = (unsigned char)((direction == 0) ? (TRISIO | (1U << pi
+      +                          nNumber)) : (TRISIO & ~(1U << pinNumber)));
+  1603     0382  0820               	movf	Dio_Config@direction,w
+  1604     0383  1903               	btfsc	3,2
+  1605     0384  2B99               	goto	l907
+  1606     0385  3001               	movlw	1
+  1607     0386  00A3               	movwf	??_Dio_Config
+  1608     0387  0A29               	incf	Dio_Config@pinNumber,w
+  1609     0388  2B8B               	goto	u384
+  1610     0389                     u385:
+  1611     0389  1003               	clrc
+  1612     038A  0DA3               	rlf	??_Dio_Config,f
+  1613     038B                     u384:
+  1614     038B  3EFF               	addlw	-1
+  1615     038C  1D03               	skipz
+  1616     038D  2B89               	goto	u385
+  1617     038E  0823               	movf	??_Dio_Config,w
+  1618     038F  3AFF               	xorlw	255
+  1619     0390  1683               	bsf	3,5	;RP0=1, select bank1
+  1620     0391  0505               	andwf	5,w	;volatile
+  1621     0392  1283               	bcf	3,5	;RP0=0, select bank0
+  1622     0393  00A4               	movwf	??_Dio_Config+1
+  1623     0394  01A5               	clrf	??_Dio_Config+2
+  1624     0395  0824               	movf	??_Dio_Config+1,w
+  1625     0396  00A7               	movwf	_Dio_Config$56
+  1626     0397  0825               	movf	??_Dio_Config+2,w
+  1627     0398  2BAF               	goto	L2
+  1628     0399                     l907:
+  1629     0399  0A29               	incf	Dio_Config@pinNumber,w
+  1630     039A  00DF               	movwf	95
+  1631     039B  3001               	movlw	1
+  1632     039C  00A3               	movwf	??_Dio_Config
+  1633     039D  3000               	movlw	0
+  1634     039E  00A4               	movwf	??_Dio_Config+1
+  1635     039F  2BA3               	goto	u394
+  1636     03A0                     u395:
+  1637     03A0  1003               	clrc
+  1638     03A1  0DA3               	rlf	??_Dio_Config,f
+  1639     03A2  0DA4               	rlf	??_Dio_Config+1,f
+  1640     03A3                     u394:
+  1641     03A3  0BDF               	decfsz	95,f
+  1642     03A4  2BA0               	goto	u395
+  1643     03A5  0823               	movf	??_Dio_Config,w
+  1644     03A6  1683               	bsf	3,5	;RP0=1, select bank1
+  1645     03A7  0405               	iorwf	5,w	;volatile
+  1646     03A8  1283               	bcf	3,5	;RP0=0, select bank0
+  1647     03A9  00A5               	movwf	??_Dio_Config+2
+  1648     03AA  0824               	movf	??_Dio_Config+1,w
+  1649     03AB  00A6               	movwf	??_Dio_Config+3
+  1650     03AC  0825               	movf	??_Dio_Config+2,w
+  1651     03AD  00A7               	movwf	_Dio_Config$56
+  1652     03AE  0826               	movf	??_Dio_Config+3,w
+  1653     03AF                     L2:
+  1654     03AF  00A8               	movwf	_Dio_Config$56+1
+  1655     03B0  0827               	movf	_Dio_Config$56,w
+  1656     03B1  1683               	bsf	3,5	;RP0=1, select bank1
+  1657     03B2  0085               	movwf	5	;volatile
+  1658                           
+  1659                           ;MCAL/scr/Dio.c: 45:     if (direction == 1) {
+  1660     03B3  1283               	bcf	3,5	;RP0=0, select bank0
+  1661     03B4  0320               	decf	Dio_Config@direction,w
+  1662     03B5  1D03               	btfss	3,2
+  1663     03B6  2BD4               	goto	l921
+  1664                           
+  1665                           ;MCAL/scr/Dio.c: 46:         if (state == 1) {
+  1666     03B7  0321               	decf	Dio_Config@state,w
+  1667     03B8  1D03               	btfss	3,2
+  1668     03B9  2BC6               	goto	l917
+  1669                           
+  1670                           ;MCAL/scr/Dio.c: 47:             DIO_State |= (1 << pinNumber);
+  1671     03BA  3001               	movlw	1
+  1672     03BB  00A3               	movwf	??_Dio_Config
+  1673     03BC  0A29               	incf	Dio_Config@pinNumber,w
+  1674     03BD  2BC0               	goto	u424
+  1675     03BE                     u425:
+  1676     03BE  1003               	clrc
+  1677     03BF  0DA3               	rlf	??_Dio_Config,f
+  1678     03C0                     u424:
+  1679     03C0  3EFF               	addlw	-1
+  1680     03C1  1D03               	skipz
+  1681     03C2  2BBE               	goto	u425
+  1682     03C3  0823               	movf	??_Dio_Config,w
+  1683     03C4  04BC               	iorwf	_DIO_State,f
+  1684                           
+  1685                           ;MCAL/scr/Dio.c: 48:         } else {
+  1686     03C5  2BD2               	goto	l919
+  1687     03C6                     l917:
+  1688                           
+  1689                           ;MCAL/scr/Dio.c: 49:             DIO_State &= ~(1 << pinNumber);
+  1690     03C6  3001               	movlw	1
+  1691     03C7  00A3               	movwf	??_Dio_Config
+  1692     03C8  0A29               	incf	Dio_Config@pinNumber,w
+  1693     03C9  2BCC               	goto	u434
+  1694     03CA                     u435:
+  1695     03CA  1003               	clrc
+  1696     03CB  0DA3               	rlf	??_Dio_Config,f
+  1697     03CC                     u434:
+  1698     03CC  3EFF               	addlw	-1
+  1699     03CD  1D03               	skipz
+  1700     03CE  2BCA               	goto	u435
+  1701     03CF  0823               	movf	??_Dio_Config,w
+  1702     03D0  3AFF               	xorlw	255
+  1703     03D1  05BC               	andwf	_DIO_State,f
+  1704     03D2                     l919:
+  1705                           
+  1706                           ;MCAL/scr/Dio.c: 51:         GPIO = DIO_State ;
+  1707     03D2  083C               	movf	_DIO_State,w
+  1708     03D3  0085               	movwf	5	;volatile
+  1709     03D4                     l921:
+  1710                           
+  1711                           ;MCAL/scr/Dio.c: 53:     if (pullType == 1) {
+  1712     03D4  0322               	decf	Dio_Config@pullType,w
+  1713     03D5  1D03               	btfss	3,2
+  1714     03D6  2BE8               	goto	l925
+  1715                           
+  1716                           ;MCAL/scr/Dio.c: 54:         OPTION_REG &= ~(1 << 7);
+  1717     03D7  307F               	movlw	127
+  1718     03D8  1683               	bsf	3,5	;RP0=1, select bank1
+  1719     03D9  0581               	andwf	1,f	;volatile
+  1720                           
+  1721                           ;MCAL/scr/Dio.c: 55:         WPU |= (1 << pinNumber);
+  1722     03DA  3001               	movlw	1
+  1723     03DB  1283               	bcf	3,5	;RP0=0, select bank0
+  1724     03DC  00A3               	movwf	??_Dio_Config
+  1725     03DD  0A29               	incf	Dio_Config@pinNumber,w
+  1726     03DE  2BE1               	goto	u454
+  1727     03DF                     u455:
+  1728     03DF  1003               	clrc
+  1729     03E0  0DA3               	rlf	??_Dio_Config,f
+  1730     03E1                     u454:
+  1731     03E1  3EFF               	addlw	-1
+  1732     03E2  1D03               	skipz
+  1733     03E3  2BDF               	goto	u455
+  1734     03E4  0823               	movf	??_Dio_Config,w
+  1735     03E5  1683               	bsf	3,5	;RP0=1, select bank1
+  1736     03E6  0495               	iorwf	21,f	;volatile
+  1737                           
+  1738                           ;MCAL/scr/Dio.c: 56:     } else {
+  1739     03E7  0008               	return
+  1740     03E8                     l925:
+  1741                           
+  1742                           ;MCAL/scr/Dio.c: 57:         WPU &= ~(1 << pinNumber);
+  1743     03E8  3001               	movlw	1
+  1744     03E9  00A3               	movwf	??_Dio_Config
+  1745     03EA  0A29               	incf	Dio_Config@pinNumber,w
+  1746     03EB  2BEE               	goto	u464
+  1747     03EC                     u465:
+  1748     03EC  1003               	clrc
+  1749     03ED  0DA3               	rlf	??_Dio_Config,f
+  1750     03EE                     u464:
+  1751     03EE  3EFF               	addlw	-1
+  1752     03EF  1D03               	skipz
+  1753     03F0  2BEC               	goto	u465
+  1754     03F1  0823               	movf	??_Dio_Config,w
+  1755     03F2  3AFF               	xorlw	255
+  1756     03F3  1683               	bsf	3,5	;RP0=1, select bank1
+  1757     03F4  0595               	andwf	21,f	;volatile
+  1758     03F5  0008               	return
+  1759     03F6                     __end_of_Dio_Config:
+  1760                           
+  1761                           	psect	text12
+  1762     01B3                     __ptext12:	
+  1763 ;; *************** function _Adc_Init *****************
+  1764 ;; Defined at:
+  1765 ;;		line 53 in file "MCAL/scr/Adc.c"
+  1766 ;; Parameters:    Size  Location     Type
+  1767 ;;		None
+  1768 ;; Auto vars:     Size  Location     Type
+  1769 ;;		None
+  1770 ;; Return value:  Size  Location     Type
+  1771 ;;                  1    wreg      void 
+  1772 ;; Registers used:
+  1773 ;;		wreg, status,2, status,0
+  1774 ;; Tracked objects:
+  1775 ;;		On entry : 100/100
+  1776 ;;		On exit  : 100/0
+  1777 ;;		Unchanged: 0/0
+  1778 ;; Data sizes:     COMMON   BANK0
+  1779 ;;      Params:         0       0
+  1780 ;;      Locals:         0       0
+  1781 ;;      Temps:          0       0
+  1782 ;;      Totals:         0       0
+  1783 ;;Total ram usage:        0 bytes
+  1784 ;; Hardware stack levels used: 1
+  1785 ;; This function calls:
+  1786 ;;		Nothing
+  1787 ;; This function is called by:
+  1788 ;;		_main
+  1789 ;; This function uses a non-reentrant model
+  1790 ;;
+  1791                           
+  1792     01B3                     _Adc_Init:	
+  1793                           ;psect for function _Adc_Init
+  1794                           
+  1795                           
+  1796                           ;MCAL/scr/Adc.c: 54: ADCON0 |= (1 << 0);
+  1797                           
+  1798                           ;incstack = 0
+  1799                           ; Regs used in _Adc_Init: [wreg+status,2+status,0]
+  1800     01B3  1283               	bcf	3,5	;RP0=0, select bank0
+  1801     01B4  141F               	bsf	31,0	;volatile
+  1802                           
+  1803                           ;MCAL/scr/Adc.c: 59:     (ADCON0 &= ~(0b1 << 6)); (ADCON0 |=(0 << 6));
+  1804     01B5  30BF               	movlw	191
+  1805     01B6  059F               	andwf	31,f	;volatile
+  1806     01B7  081F               	movf	31,w	;volatile
+  1807                           
+  1808                           ;MCAL/scr/Adc.c: 62:     (ANSEL &= ~(0b111 << 4) ); (ANSEL |= (( ((2000000 / ((4000000)/
+      +                          1000 )) >= 1600) ? 0b000 : ((4000000 / ((4000000)/1000 )) >= 1600) ? 0b100 : ((8000000 /
+      +                           ((4000000)/1000 )) >= 1600) ? 0b001 : ((16000000 / ((4000000)/1000 )) >= 1600) ? 0b101 
+      +                          : ((32000000 / ((4000000)/1000 )) >= 1600) ? 0b010 : ((64000000 / ((4000000)/1000 )) >= 
+      +                          1600) ? 0b110 : 0b110) << 4) );
+  1809     01B8  308F               	movlw	143
+  1810     01B9  1683               	bsf	3,5	;RP0=1, select bank1
+  1811     01BA  059F               	andwf	31,f	;volatile
+  1812     01BB  161F               	bsf	31,4	;volatile
+  1813                           
+  1814                           ;MCAL/scr/Adc.c: 82:         ADCON0 &= ~(1 << 7);
+  1815     01BC  307F               	movlw	127
+  1816     01BD  1283               	bcf	3,5	;RP0=0, select bank0
+  1817     01BE  059F               	andwf	31,f	;volatile
+  1818     01BF  0008               	return
+  1819     01C0                     __end_of_Adc_Init:
+  1820     0000                     ___latbits      equ	0
+  1821     005E                     btemp           set	94	;btemp
+  1822     005E                     wtemp0          set	94
+  1823                           
+  1824                           	psect	config
+  1825                           
+  1826                           ;Config register CONFIG @ 0x2007
+  1827                           ;	Oscillator Selection bits
+  1828                           ;	FOSC = INTRCIO, INTOSC oscillator: I/O function on GP4/OSC2/CLKOUT pin, I/O function o
+      +                          n GP5/OSC1/CLKIN
+  1829                           ;	Watchdog Timer Enable bit
+  1830                           ;	WDTE = OFF, WDT disabled
+  1831                           ;	Power-Up Timer Enable bit
+  1832                           ;	PWRTE = OFF, PWRT disabled
+  1833                           ;	GP3/MCLR pin function select
+  1834                           ;	MCLRE = OFF, GP3/MCLR pin function is digital I/O, MCLR internally tied to VDD
+  1835                           ;	Brown-out Detect Enable bit
+  1836                           ;	BOREN = OFF, BOD disabled
+  1837                           ;	Code Protection bit
+  1838                           ;	CP = OFF, Program Memory code protection is disabled
+  1839                           ;	Data Code Protection bit
+  1840                           ;	CPD = OFF, Data memory code protection is disabled
+  1841     2007                     	org	8199
+  1842     2007  3194               	dw	12692
+
+Data Sizes:
+    Strings     0
+    Constant    23
+    Data        0
+    BSS         6
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON            0      0       0
+    BANK0            62     23      29
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _main->_MAX7219_DisplayNumber
+    _SPI_Init->_Dio_Config
+    _MAX7219_Init->_SPI_Send_16bit
+    _MAX7219_DisplayNumber->_MAX7219_DisplayData
+    _MAX7219_DisplayData->_SPI_Send_16bit
+    _SPI_Send_16bit->_Dio_Pin_Write
+    _Dio_init->_Dio_Config
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0    1601
+                           _Adc_Init
+                           _Dio_init
+                          _Gpio_Init
+              _MAX7219_DisplayNumber
+                       _MAX7219_Init
+                           _SPI_Init
+ ---------------------------------------------------------------------------------
+ (1) _SPI_Init                                             0     0      0     301
+                         _Dio_Config
+ ---------------------------------------------------------------------------------
+ (1) _MAX7219_Init                                         0     0      0     182
+                     _SPI_Send_16bit
+ ---------------------------------------------------------------------------------
+ (1) _MAX7219_DisplayNumber                                5     1      4     673
+                                             18 BANK0      5     1      4
+                _MAX7219_DisplayData
+                            ___lldiv
+                            ___llmod
+ ---------------------------------------------------------------------------------
+ (2) ___llmod                                             10     2      8     161
+                                              0 BANK0     10     2      8
+ ---------------------------------------------------------------------------------
+ (2) ___lldiv                                             14     6      8     164
+                                              0 BANK0     14     6      8
+ ---------------------------------------------------------------------------------
+ (2) _MAX7219_DisplayData                                  6     5      1     234
+                                             12 BANK0      6     5      1
+                     _SPI_Send_16bit
+                            ___llmod (ARG)
+ ---------------------------------------------------------------------------------
+ (2) _SPI_Send_16bit                                       9     7      2     182
+                                              3 BANK0      9     7      2
+                      _Dio_Pin_Write
+ ---------------------------------------------------------------------------------
+ (3) _Dio_Pin_Write                                        3     2      1      86
+                                              0 BANK0      3     2      1
+ ---------------------------------------------------------------------------------
+ (1) _Gpio_Init                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _Dio_init                                             0     0      0     301
+                         _Dio_Config
+ ---------------------------------------------------------------------------------
+ (2) _Dio_Config                                          10     7      3     301
+                                              0 BANK0     10     7      3
+ ---------------------------------------------------------------------------------
+ (1) _Adc_Init                                            12    12      0     144
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _Adc_Init
+   _Dio_init
+     _Dio_Config
+   _Gpio_Init
+   _MAX7219_DisplayNumber
+     _MAX7219_DisplayData
+       _SPI_Send_16bit
+         _Dio_Pin_Write
+       ___llmod (ARG)
+     ___lldiv
+     ___llmod
+   _MAX7219_Init
+     _SPI_Send_16bit
+   _SPI_Init
+     _Dio_Config
+
+Address spaces:
+Name               Size   Autos  Total    Usage
+BITCOMMON            0      0       0      0.0%
+BITBANK0            62      0       0      0.0%
+COMMON               0      0       0      0.0%
+BANK0               62     23      29     46.8%
+STACK                0      0       0      0.0%
+DATA                 0      0      29      0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.50 build 20240725155939 
+Symbol Table                                                                                   Fri Sep 20 16:01:42 2024
+
+                            pc 0002                             fsr 0004          __end_of_Dio_Pin_Write 0253  
+               _SPI_Send_16bit 02D7                            l127 01DC                            l921 03D4  
+                          l907 0399                            l925 03E8                            l917 03C6  
+                          l919 03D2                            l935 0335                            l873 0244  
+                          l945 036B                            l937 0343                            l961 02A3  
+                          l875 0250                            l885 02DC                            l949 0378  
+                          l965 02C1                            l959 0295                            l889 02F8  
+                          l969 02CE                            u324 023E                            u325 023C  
+                          u334 024A                            u335 0248                            u424 03C0  
+                          u344 02E9                            u425 03BE                            u345 02E6  
+                          u505 0345                            u434 03CC                            u435 03CA  
+                          u515 035A                            u365 031D                            u525 036C  
+                          u454 03E1                            u455 03DF                            u464 03EE  
+                          u384 038B                            u465 03EC                            u385 0389  
+                          u617 02FD                            u394 03A3                            u395 03A0  
+                          u627 0307                            u555 0299                            u485 0339  
+                          u575 02B1                            u585 02C2                            _WPU 0095  
+                          fsr0 0004                           l1023 0254                           _GPIO 0005  
+                         _main 01CE                           btemp 005E                     _Dio_Config 0381  
+                         start 0000         __end_of_SPI_Send_16bit 0325         ?_MAX7219_DisplayNumber 0032  
+                        ?_main 0020                          _ANSEL 009F                __end_of___lldiv 0381  
+              __end_of___llmod 02D7               __end_of_Adc_Init 01C0         MAX7219_DisplayNumber@i 0036  
+             __end_of_SPI_Init 0219                          pclath 000A           __end_of_MAX7219_Init 0234  
+                        status 0003                          wtemp0 005E               __end_of_Dio_init 01CE  
+              __initialization 03F6                   __end_of_main 01DD                ?_SPI_Send_16bit 0023  
+                       ??_main 0000                         _ADCON0 001F               ___llmod@dividend 0024  
+                       _TRISIO 0085                    ?_Dio_Config 0020                      ??___lldiv 0028  
+                    ??___llmod 0028                         _value2 0037                         _value3 0039  
+           SPI_Send_16bit@data 0023            _MAX7219_DisplayData 01DD        __end_of__initialization 03FD  
+     MAX7219_DisplayData@digit 0031           ?_MAX7219_DisplayData 002C                 __pcstackCOMMON 0000  
+            _MAX7219_CharTable 0007                      ?_Adc_Init 0020              __end_of_Gpio_Init 0202  
+                    ?_SPI_Init 0020                      ?_Dio_init 0020                     __pbssBANK0 0037  
+        ??_MAX7219_DisplayData 002D                     __pmaintext 01CE      __end_of_MAX7219_CharTable 001E  
+       Dio_Pin_Write@pinNumber 0022        ??_MAX7219_DisplayNumber 0000                     ??_Adc_Init 0000  
+                   ??_SPI_Init 0000                   _MAX7219_Init 0219             Dio_Config@pullType 0022  
+                   ??_Dio_init 0000                     __stringtab 0001               ??_SPI_Send_16bit 0025  
+                      ___lldiv 0325                        ___llmod 028D                        __ptext1 0202  
+                      __ptext2 0219                        __ptext3 0253                        __ptext4 028D  
+                      __ptext5 0325                        __ptext6 01DD                        __ptext7 02D7  
+                      __ptext8 0234                        __ptext9 01EF                      _DIO_State 003C  
+         end_of_initialization 03FD                  _Dio_Config$56 0027                   ??_Dio_Config 0023  
+              ___lldiv@divisor 0020                ___lldiv@counter 002D                  _Dio_Pin_Write 0234  
+           __end_of_Dio_Config 03F6                 ?_Dio_Pin_Write 0020                      _Gpio_Init 01EF  
+          start_initialization 03F6   MAX7219_DisplayData@character 002C                    _BCD_Enabled 003B  
+              ___llmod@divisor 0020                ___llmod@counter 0029              SPI_Send_16bit@bit 002A  
+__end_of_MAX7219_DisplayNumber 028D                     ?_Gpio_Init 0020                      ___latbits 0000  
+                __pcstackBANK0 0020    __end_of_MAX7219_DisplayData 01EF            Dio_Config@direction 0020  
+              Dio_Config@state 0021                       ?___lldiv 0020                       ?___llmod 0020  
+              ??_Dio_Pin_Write 0021                      __pstrings 0001            Dio_Config@pinNumber 0029  
+                     _Adc_Init 01B3                       _SPI_Init 0202                    __stringbase 0006  
+                  ??_Gpio_Init 0000                       _Dio_init 01C0             Dio_Pin_Write@state 0020  
+           __end_of__stringtab 0007                       __ptext10 01C0                       __ptext11 0381  
+                     __ptext12 01B3    MAX7219_DisplayNumber@number 0032                  ?_MAX7219_Init 0020  
+             ___lldiv@dividend 0024                      stringcode 0001                 ??_MAX7219_Init 0000  
+                   _OPTION_REG 0081          _MAX7219_DisplayNumber 0253               ___lldiv@quotient 0029  
+                     stringdir 0001                       stringtab 0001  
